@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zzyy.rs.mapper.AccountMapper">
+  <resultMap id="BaseResultMap" type="com.zzyy.rs.entities.Account">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="balance" jdbcType="DECIMAL" property="balance" />
+    <result column="accumulat_increase" jdbcType="DECIMAL" property="accumulatIncrease" />
+    <result column="accumulat_decrease" jdbcType="DECIMAL" property="accumulatDecrease" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="modify_date" jdbcType="TIMESTAMP" property="modifyDate" />
+    <result column="operater" jdbcType="VARCHAR" property="operater" />
+    <result column="last_balance" jdbcType="DECIMAL" property="lastBalance" />
+    <result column="rs_name" jdbcType="VARCHAR" property="rsName" />
+    <result column="re_num" jdbcType="VARCHAR" property="reNum" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="spell" jdbcType="VARCHAR" property="spell" />
+    <result column="first_spell" jdbcType="VARCHAR" property="firstSpell" />
+    <result column="operateAmount" jdbcType="DECIMAL" property="operateamount" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, balance, accumulat_increase, accumulat_decrease, create_date, modify_date, operater, 
+    last_balance, rs_name, re_num, version, description, spell, first_spell, operateAmount
+  </sql>
+  <select id="selectByExample" parameterType="com.zzyy.rs.entities.AccountExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from rs_account
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from rs_account
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from rs_account
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zzyy.rs.entities.AccountExample">
+    delete from rs_account
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zzyy.rs.entities.Account">
+    insert into rs_account (id, balance, accumulat_increase, 
+      accumulat_decrease, create_date, modify_date, 
+      operater, last_balance, rs_name, 
+      re_num, version, description, 
+      spell, first_spell, operateAmount
+      )
+    values (#{id,jdbcType=INTEGER}, #{balance,jdbcType=DECIMAL}, #{accumulatIncrease,jdbcType=DECIMAL}, 
+      #{accumulatDecrease,jdbcType=DECIMAL}, #{createDate,jdbcType=TIMESTAMP}, #{modifyDate,jdbcType=TIMESTAMP}, 
+      #{operater,jdbcType=VARCHAR}, #{lastBalance,jdbcType=DECIMAL}, #{rsName,jdbcType=VARCHAR}, 
+      #{reNum,jdbcType=VARCHAR}, #{version,jdbcType=INTEGER}, #{description,jdbcType=VARCHAR}, 
+      #{spell,jdbcType=VARCHAR}, #{firstSpell,jdbcType=VARCHAR}, #{operateamount,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zzyy.rs.entities.Account">
+    insert into rs_account
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="balance != null">
+        balance,
+      </if>
+      <if test="accumulatIncrease != null">
+        accumulat_increase,
+      </if>
+      <if test="accumulatDecrease != null">
+        accumulat_decrease,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="modifyDate != null">
+        modify_date,
+      </if>
+      <if test="operater != null">
+        operater,
+      </if>
+      <if test="lastBalance != null">
+        last_balance,
+      </if>
+      <if test="rsName != null">
+        rs_name,
+      </if>
+      <if test="reNum != null">
+        re_num,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="spell != null">
+        spell,
+      </if>
+      <if test="firstSpell != null">
+        first_spell,
+      </if>
+      <if test="operateamount != null">
+        operateAmount,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="balance != null">
+        #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="accumulatIncrease != null">
+        #{accumulatIncrease,jdbcType=DECIMAL},
+      </if>
+      <if test="accumulatDecrease != null">
+        #{accumulatDecrease,jdbcType=DECIMAL},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null">
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operater != null">
+        #{operater,jdbcType=VARCHAR},
+      </if>
+      <if test="lastBalance != null">
+        #{lastBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="rsName != null">
+        #{rsName,jdbcType=VARCHAR},
+      </if>
+      <if test="reNum != null">
+        #{reNum,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="spell != null">
+        #{spell,jdbcType=VARCHAR},
+      </if>
+      <if test="firstSpell != null">
+        #{firstSpell,jdbcType=VARCHAR},
+      </if>
+      <if test="operateamount != null">
+        #{operateamount,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zzyy.rs.entities.AccountExample" resultType="java.lang.Long">
+    select count(*) from rs_account
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update rs_account
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.balance != null">
+        balance = #{record.balance,jdbcType=DECIMAL},
+      </if>
+      <if test="record.accumulatIncrease != null">
+        accumulat_increase = #{record.accumulatIncrease,jdbcType=DECIMAL},
+      </if>
+      <if test="record.accumulatDecrease != null">
+        accumulat_decrease = #{record.accumulatDecrease,jdbcType=DECIMAL},
+      </if>
+      <if test="record.createDate != null">
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.modifyDate != null">
+        modify_date = #{record.modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.operater != null">
+        operater = #{record.operater,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastBalance != null">
+        last_balance = #{record.lastBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="record.rsName != null">
+        rs_name = #{record.rsName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reNum != null">
+        re_num = #{record.reNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.version != null">
+        version = #{record.version,jdbcType=INTEGER},
+      </if>
+      <if test="record.description != null">
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.spell != null">
+        spell = #{record.spell,jdbcType=VARCHAR},
+      </if>
+      <if test="record.firstSpell != null">
+        first_spell = #{record.firstSpell,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operateamount != null">
+        operateAmount = #{record.operateamount,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update rs_account
+    set id = #{record.id,jdbcType=INTEGER},
+      balance = #{record.balance,jdbcType=DECIMAL},
+      accumulat_increase = #{record.accumulatIncrease,jdbcType=DECIMAL},
+      accumulat_decrease = #{record.accumulatDecrease,jdbcType=DECIMAL},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      modify_date = #{record.modifyDate,jdbcType=TIMESTAMP},
+      operater = #{record.operater,jdbcType=VARCHAR},
+      last_balance = #{record.lastBalance,jdbcType=DECIMAL},
+      rs_name = #{record.rsName,jdbcType=VARCHAR},
+      re_num = #{record.reNum,jdbcType=VARCHAR},
+      version = #{record.version,jdbcType=INTEGER},
+      description = #{record.description,jdbcType=VARCHAR},
+      spell = #{record.spell,jdbcType=VARCHAR},
+      first_spell = #{record.firstSpell,jdbcType=VARCHAR},
+      operateAmount = #{record.operateamount,jdbcType=DECIMAL}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zzyy.rs.entities.Account">
+    update rs_account
+    <set>
+      <if test="balance != null">
+        balance = #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="accumulatIncrease != null">
+        accumulat_increase = #{accumulatIncrease,jdbcType=DECIMAL},
+      </if>
+      <if test="accumulatDecrease != null">
+        accumulat_decrease = #{accumulatDecrease,jdbcType=DECIMAL},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null">
+        modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operater != null">
+        operater = #{operater,jdbcType=VARCHAR},
+      </if>
+      <if test="lastBalance != null">
+        last_balance = #{lastBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="rsName != null">
+        rs_name = #{rsName,jdbcType=VARCHAR},
+      </if>
+      <if test="reNum != null">
+        re_num = #{reNum,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null">
+        version = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="spell != null">
+        spell = #{spell,jdbcType=VARCHAR},
+      </if>
+      <if test="firstSpell != null">
+        first_spell = #{firstSpell,jdbcType=VARCHAR},
+      </if>
+      <if test="operateamount != null">
+        operateAmount = #{operateamount,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zzyy.rs.entities.Account">
+    update rs_account
+    set balance = #{balance,jdbcType=DECIMAL},
+      accumulat_increase = #{accumulatIncrease,jdbcType=DECIMAL},
+      accumulat_decrease = #{accumulatDecrease,jdbcType=DECIMAL},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      operater = #{operater,jdbcType=VARCHAR},
+      last_balance = #{lastBalance,jdbcType=DECIMAL},
+      rs_name = #{rsName,jdbcType=VARCHAR},
+      re_num = #{reNum,jdbcType=VARCHAR},
+      version = #{version,jdbcType=INTEGER},
+      description = #{description,jdbcType=VARCHAR},
+      spell = #{spell,jdbcType=VARCHAR},
+      first_spell = #{firstSpell,jdbcType=VARCHAR},
+      operateAmount = #{operateamount,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <insert id="batchInsert" parameterType="java.util.List">
+    insert into rs_account
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      id,
+      balance,
+      accumulat_increase,
+      accumulat_decrease,
+      create_date,
+      modify_date,
+      operater,
+      last_balance,
+      rs_name,
+      re_num,
+      version,
+      description,
+      spell,
+      first_spell,
+      operateAmount,
+    </trim>
+     values 
+    <foreach collection="list" index="index" item="item" separator=",">
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+        #{item.id,jdbcType=INTEGER},
+        #{item.balance,jdbcType=DECIMAL},
+        #{item.accumulatIncrease,jdbcType=DECIMAL},
+        #{item.accumulatDecrease,jdbcType=DECIMAL},
+        #{item.createDate,jdbcType=TIMESTAMP},
+        #{item.modifyDate,jdbcType=TIMESTAMP},
+        #{item.operater,jdbcType=VARCHAR},
+        #{item.lastBalance,jdbcType=DECIMAL},
+        #{item.rsName,jdbcType=VARCHAR},
+        #{item.reNum,jdbcType=VARCHAR},
+        #{item.version,jdbcType=INTEGER},
+        #{item.description,jdbcType=VARCHAR},
+        #{item.spell,jdbcType=VARCHAR},
+        #{item.firstSpell,jdbcType=VARCHAR},
+        #{item.operateamount,jdbcType=DECIMAL},
+      </trim>
+    </foreach>
+  </insert>
+</mapper>

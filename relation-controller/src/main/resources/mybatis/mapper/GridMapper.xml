@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zzyy.rs.mapper.GridMapper" >
+
+    <select id="getTotalElement" resultType="Long">
+        select count(id) from rs_account
+    </select>
+
+    <select id="getAccountLists" resultType="com.zzyy.rs.entities.Account">
+        select * from rs_account
+    </select>
+</mapper>
