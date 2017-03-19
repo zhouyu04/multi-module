@@ -1,8 +1,11 @@
 package com.zzyy.rs.dao.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.zzyy.rs.mapper.AccountMapper;
+import org.apache.commons.collections.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -34,6 +37,25 @@ public class AccountDaoImpl implements AccountDao {
 	public void batchInsert(List<Account> accounts) {
 
 		accountMapper.batchInsert(accounts);
+	}
+
+	public Account findAccountByNameAndMark(String rsName, String personMark) {
+
+		Map<String,Object> params = new HashMap();
+		params.put("rsName",rsName);
+		params.put("personMark",personMark);
+
+		Account account = gridmapper.findAccountByNameAndMark(params);
+
+		return account;
+	}
+
+	public void insertAccount(Account account) {
+		accountMapper.insert(account);
+	}
+
+	public void updateAccount(Account account) {
+		accountMapper.updateByPrimaryKey(account);
 	}
 
 }

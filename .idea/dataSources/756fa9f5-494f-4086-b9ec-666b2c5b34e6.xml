@@ -50,11 +50,11 @@
     </column>
     <column id="22" parent="12" name="create_date">
       <mandatory>1</mandatory>
-      <data-type>datetime|0</data-type>
-    </column>
-    <column id="23" parent="12" name="modify_date">
       <data-type>timestamp|0</data-type>
       <default-expression>CURRENT_TIMESTAMP</default-expression>
+    </column>
+    <column id="23" parent="12" name="modify_date">
+      <data-type>datetime|0</data-type>
     </column>
     <column id="24" parent="12" name="operater">
       <data-type>varchar(255)|0</data-type>
@@ -83,29 +83,32 @@
     <column id="32" parent="12" name="operateAmount">
       <data-type>decimal(20,2)|0</data-type>
     </column>
-    <key id="33" parent="12" name="PRIMARY">
+    <column id="33" parent="12" name="personMark">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <key id="34" parent="12" name="PRIMARY">
       <columns>id</columns>
       <primary>1</primary>
     </key>
-    <column id="34" parent="13" name="id">
+    <column id="35" parent="13" name="id">
       <mandatory>1</mandatory>
       <data-type>int(25)|0</data-type>
       <sequence-identity>1</sequence-identity>
     </column>
-    <column id="35" parent="13" name="userName">
+    <column id="36" parent="13" name="userName">
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="36" parent="13" name="passWord">
+    <column id="37" parent="13" name="passWord">
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="37" parent="13" name="actualName">
+    <column id="38" parent="13" name="actualName">
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="38" parent="13" name="valid">
+    <column id="39" parent="13" name="valid">
       <data-type>tinyint(1)|0</data-type>
       <default-expression>&apos;1&apos;</default-expression>
     </column>
-    <key id="39" parent="13" name="PRIMARY">
+    <key id="40" parent="13" name="PRIMARY">
       <columns>id</columns>
       <primary>1</primary>
     </key>

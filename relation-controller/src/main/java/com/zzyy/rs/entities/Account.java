@@ -34,6 +34,8 @@ public class Account {
 
     private BigDecimal operateamount;
 
+    private String personmark;
+
     public Integer getId() {
         return id;
     }
@@ -152,5 +154,13 @@ public class Account {
 
     public void setOperateamount(BigDecimal operateamount) {
         this.operateamount = operateamount;
+    }
+
+    public String getPersonmark() {
+        return personmark;
+    }
+
+    public void setPersonmark(String personmark) {
+        this.personmark = personmark == null ? null : personmark.trim();
     }
 }

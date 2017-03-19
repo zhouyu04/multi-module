@@ -18,6 +18,7 @@
             <tr class="active">
                 <th>姓名</th>
                 <th>金额</th>
+                <th>标记</th>
                 <th>描述</th>
             </tr>
             <c:forEach items="${AccountModel.accounts}" varStatus="status">
@@ -28,6 +29,10 @@
                     </td>
                     <td>
                         <form:input path="accounts[${status.index}].operateamount"
+                                    type="text"/>
+                    </td>
+                    <td>
+                        <form:input path="accounts[${status.index}].personmark"
                                     type="text"/>
                     </td>
                     <td><form:input path="accounts[${status.index}].description" value="${description}"

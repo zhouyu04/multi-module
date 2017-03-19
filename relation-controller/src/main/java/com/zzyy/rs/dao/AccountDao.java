@@ -11,4 +11,10 @@ public interface AccountDao {
 	List<Account> getAccountLists();
 
     void batchInsert(List<Account> accounts);
+
+    Account findAccountByNameAndMark(String rsName, String personMark);
+
+    void insertAccount(Account account);
+
+    void updateAccount(Account account);
 }

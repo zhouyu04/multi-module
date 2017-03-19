@@ -1,8 +1,11 @@
 package com.zzyy.rs.controller;
 
+import com.zzyy.rs.entities.Account;
+import com.zzyy.rs.entities.AccountModel;
 import com.zzyy.rs.entities.Append;
 import com.zzyy.rs.service.AccountService;
 import com.zzyy.rs.service.AppendService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,42 +13,46 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.zzyy.rs.entities.Account;
-import com.zzyy.rs.entities.AccountModel;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping(value = "/add/")
 public class AddController {
 
-	@Autowired
-	AppendService appendService;
+    @Autowired
+    AppendService appendService;
 
-	@Autowired
-	AccountService accountService;
+    @Autowired
+    AccountService accountService;
 
-	@RequestMapping(value = "input", method = RequestMethod.POST)
-	public String addEvent(@ModelAttribute("AccountModel") AccountModel accountModel,Model model){
-		System.out.println(accountModel);
-		for (Account account : accountModel.getAccounts()) {
-			System.out.println(account.toString());
-		}
-		accountService.batchInsert(accountModel.getAccounts());
-		model.addAttribute("description",accountModel.getAccounts().get(2).getDescription());
-		return "input";
-	}
+    @RequestMapping(value = "input", method = RequestMethod.POST)
+    public String addEvent(@ModelAttribute("AccountModel") AccountModel accountModel, Model model) {
 
-	@RequestMapping(value = "inputEvent", method = RequestMethod.POST)
-	public String inputEvent(Append append,Model model){
+        List<Account> params = new ArrayList<Account>();
+        System.out.println(accountModel);
+        for (Account account : accountModel.getAccounts()) {
+            if (StringUtils.isNotEmpty(account.getRsName()) && account.getOperateamount() != null){
+                params.add(account);
+            }
+        }
+        accountService.batchInsert(params);
+        model.addAttribute("description", accountModel.getAccounts().get(0).getDescription());
+        return "input";
+    }
 
-		appendService.addAppend(append);
-		AccountModel accountModel = new AccountModel();
-		for (int i = 0; i < 10; i++) {
-			accountModel.add(new Account());
-		}
+    @RequestMapping(value = "inputEvent", method = RequestMethod.POST)
+    public String inputEvent(Append append, Model model) {
 
-		model.addAttribute("AccountModel", accountModel);
-		model.addAttribute("description",append.getDescription());
-		return "input";
-	}
-	
+        appendService.addAppend(append);
+        AccountModel accountModel = new AccountModel();
+        for (int i = 0; i < 10; i++) {
+            accountModel.add(new Account());
+        }
+
+        model.addAttribute("AccountModel", accountModel);
+        model.addAttribute("description", append.getDescription());
+        return "input";
+    }
+
 }

@@ -1065,6 +1065,76 @@ public class AccountExample {
             addCriterion("operateAmount not between", value1, value2, "operateamount");
             return (Criteria) this;
         }
+
+        public Criteria andPersonmarkIsNull() {
+            addCriterion("personMark is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPersonmarkIsNotNull() {
+            addCriterion("personMark is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPersonmarkEqualTo(String value) {
+            addCriterion("personMark =", value, "personmark");
+            return (Criteria) this;
+        }
+
+        public Criteria andPersonmarkNotEqualTo(String value) {
+            addCriterion("personMark <>", value, "personmark");
+            return (Criteria) this;
+        }
+
+        public Criteria andPersonmarkGreaterThan(String value) {
+            addCriterion("personMark >", value, "personmark");
+            return (Criteria) this;
+        }
+
+        public Criteria andPersonmarkGreaterThanOrEqualTo(String value) {
+            addCriterion("personMark >=", value, "personmark");
+            return (Criteria) this;
+        }
+
+        public Criteria andPersonmarkLessThan(String value) {
+            addCriterion("personMark <", value, "personmark");
+            return (Criteria) this;
+        }
+
+        public Criteria andPersonmarkLessThanOrEqualTo(String value) {
+            addCriterion("personMark <=", value, "personmark");
+            return (Criteria) this;
+        }
+
+        public Criteria andPersonmarkLike(String value) {
+            addCriterion("personMark like", value, "personmark");
+            return (Criteria) this;
+        }
+
+        public Criteria andPersonmarkNotLike(String value) {
+            addCriterion("personMark not like", value, "personmark");
+            return (Criteria) this;
+        }
+
+        public Criteria andPersonmarkIn(List<String> values) {
+            addCriterion("personMark in", values, "personmark");
+            return (Criteria) this;
+        }
+
+        public Criteria andPersonmarkNotIn(List<String> values) {
+            addCriterion("personMark not in", values, "personmark");
+            return (Criteria) this;
+        }
+
+        public Criteria andPersonmarkBetween(String value1, String value2) {
+            addCriterion("personMark between", value1, value2, "personmark");
+            return (Criteria) this;
+        }
+
+        public Criteria andPersonmarkNotBetween(String value1, String value2) {
+            addCriterion("personMark not between", value1, value2, "personmark");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

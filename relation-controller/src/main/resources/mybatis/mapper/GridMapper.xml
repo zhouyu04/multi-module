@@ -9,4 +9,8 @@
     <select id="getAccountLists" resultType="com.zzyy.rs.entities.Account">
         select * from rs_account
     </select>
+
+    <select id="findAccountByNameAndMark" resultType="com.zzyy.rs.entities.Account">
+      SELECT * FROM rs_account WHERE rs_name = #{rsName,jdbcType=VARCHAR} AND personMark = #{personMark,jdbcType=VARCHAR};
+    </select>
 </mapper>
