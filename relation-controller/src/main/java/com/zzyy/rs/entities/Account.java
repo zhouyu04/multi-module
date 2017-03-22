@@ -32,9 +32,11 @@ public class Account {
 
     private String firstSpell;
 
-    private BigDecimal operateamount;
-
     private String personmark;
+
+    private Boolean status;
+
+    private BigDecimal operateamount;
 
     public Integer getId() {
         return id;
@@ -148,19 +150,27 @@ public class Account {
         this.firstSpell = firstSpell == null ? null : firstSpell.trim();
     }
 
-    public BigDecimal getOperateamount() {
-        return operateamount;
-    }
-
-    public void setOperateamount(BigDecimal operateamount) {
-        this.operateamount = operateamount;
-    }
-
     public String getPersonmark() {
         return personmark;
     }
 
     public void setPersonmark(String personmark) {
         this.personmark = personmark == null ? null : personmark.trim();
+    }
+
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
+
+    public BigDecimal getOperateamount() {
+        return operateamount;
+    }
+
+    public void setOperateamount(BigDecimal operateamount) {
+        this.operateamount = operateamount;
     }
 }

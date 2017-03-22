@@ -10,5 +10,5 @@ public interface AccountService {
 
 	List<Account> getAccountLists();
 
-    void batchInsert(List<Account> accounts);
+    List<Account> batchInsert(List<Account> accounts);
 }

@@ -7,9 +7,9 @@ import com.zzyy.rs.entities.Account;
 
 public interface GridMapper {
 
-	Long getTotalElement();
+    Long getTotalElement();
 
-	List<Account> getAccountLists();
+    List<Account> getAccountLists();
 
-	Account findAccountByNameAndMark(Map<String, Object> params);
+    Account findAccountByNameAndMark(Map<String, Object> params);
 }

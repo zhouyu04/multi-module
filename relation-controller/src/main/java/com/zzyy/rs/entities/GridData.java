@@ -12,9 +12,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>gridData complex type的 Java 类。
- * 
+ *
  * <p>以下模式片段指定包含在此类中的预期内容。
- * 
+ *
  * <pre>
  * &lt;complexType name="gridData"&gt;
  *   &lt;complexContent&gt;
@@ -29,18 +29,18 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
  * </pre>
- * 
- * 
+ *
+ *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "gridData", propOrder = {
-    "page",
-    "total",
-    "records",
-    "rows"
+        "page",
+        "total",
+        "records",
+        "rows"
 })
 public class GridData
-    implements Serializable
+        implements Serializable
 {
 
     protected int page;
@@ -51,7 +51,7 @@ public class GridData
 
     /**
      * 获取page属性的值。
-     * 
+     *
      */
     public int getPage() {
         return page;
@@ -59,7 +59,7 @@ public class GridData
 
     /**
      * 设置page属性的值。
-     * 
+     *
      */
     public void setPage(int value) {
         this.page = value;
@@ -67,7 +67,7 @@ public class GridData
 
     /**
      * 获取total属性的值。
-     * 
+     *
      */
     public int getTotal() {
         return total;
@@ -75,7 +75,7 @@ public class GridData
 
     /**
      * 设置total属性的值。
-     * 
+     *
      */
     public void setTotal(int value) {
         this.total = value;
@@ -83,7 +83,7 @@ public class GridData
 
     /**
      * 获取records属性的值。
-     * 
+     *
      */
     public long getRecords() {
         return records;
@@ -91,7 +91,7 @@ public class GridData
 
     /**
      * 设置records属性的值。
-     * 
+     *
      */
     public void setRecords(long value) {
         this.records = value;
@@ -99,25 +99,25 @@ public class GridData
 
     /**
      * Gets the value of the rows property.
-     * 
+     *
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the rows property.
-     * 
+     *
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getRows().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link Object }
-     * 
-     * 
+     *
+     *
      */
     public List<Object> getRows() {
         if (rows == null) {

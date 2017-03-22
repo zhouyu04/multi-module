@@ -1006,66 +1006,6 @@ public class AccountExample {
             return (Criteria) this;
         }
 
-        public Criteria andOperateamountIsNull() {
-            addCriterion("operateAmount is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperateamountIsNotNull() {
-            addCriterion("operateAmount is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperateamountEqualTo(BigDecimal value) {
-            addCriterion("operateAmount =", value, "operateamount");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperateamountNotEqualTo(BigDecimal value) {
-            addCriterion("operateAmount <>", value, "operateamount");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperateamountGreaterThan(BigDecimal value) {
-            addCriterion("operateAmount >", value, "operateamount");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperateamountGreaterThanOrEqualTo(BigDecimal value) {
-            addCriterion("operateAmount >=", value, "operateamount");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperateamountLessThan(BigDecimal value) {
-            addCriterion("operateAmount <", value, "operateamount");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperateamountLessThanOrEqualTo(BigDecimal value) {
-            addCriterion("operateAmount <=", value, "operateamount");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperateamountIn(List<BigDecimal> values) {
-            addCriterion("operateAmount in", values, "operateamount");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperateamountNotIn(List<BigDecimal> values) {
-            addCriterion("operateAmount not in", values, "operateamount");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperateamountBetween(BigDecimal value1, BigDecimal value2) {
-            addCriterion("operateAmount between", value1, value2, "operateamount");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperateamountNotBetween(BigDecimal value1, BigDecimal value2) {
-            addCriterion("operateAmount not between", value1, value2, "operateamount");
-            return (Criteria) this;
-        }
-
         public Criteria andPersonmarkIsNull() {
             addCriterion("personMark is null");
             return (Criteria) this;
@@ -1133,6 +1073,126 @@ public class AccountExample {
 
         public Criteria andPersonmarkNotBetween(String value1, String value2) {
             addCriterion("personMark not between", value1, value2, "personmark");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusIsNull() {
+            addCriterion("status is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusIsNotNull() {
+            addCriterion("status is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusEqualTo(Boolean value) {
+            addCriterion("status =", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusNotEqualTo(Boolean value) {
+            addCriterion("status <>", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusGreaterThan(Boolean value) {
+            addCriterion("status >", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusGreaterThanOrEqualTo(Boolean value) {
+            addCriterion("status >=", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusLessThan(Boolean value) {
+            addCriterion("status <", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusLessThanOrEqualTo(Boolean value) {
+            addCriterion("status <=", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusIn(List<Boolean> values) {
+            addCriterion("status in", values, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusNotIn(List<Boolean> values) {
+            addCriterion("status not in", values, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusBetween(Boolean value1, Boolean value2) {
+            addCriterion("status between", value1, value2, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusNotBetween(Boolean value1, Boolean value2) {
+            addCriterion("status not between", value1, value2, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperateamountIsNull() {
+            addCriterion("operateAmount is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperateamountIsNotNull() {
+            addCriterion("operateAmount is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperateamountEqualTo(BigDecimal value) {
+            addCriterion("operateAmount =", value, "operateamount");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperateamountNotEqualTo(BigDecimal value) {
+            addCriterion("operateAmount <>", value, "operateamount");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperateamountGreaterThan(BigDecimal value) {
+            addCriterion("operateAmount >", value, "operateamount");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperateamountGreaterThanOrEqualTo(BigDecimal value) {
+            addCriterion("operateAmount >=", value, "operateamount");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperateamountLessThan(BigDecimal value) {
+            addCriterion("operateAmount <", value, "operateamount");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperateamountLessThanOrEqualTo(BigDecimal value) {
+            addCriterion("operateAmount <=", value, "operateamount");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperateamountIn(List<BigDecimal> values) {
+            addCriterion("operateAmount in", values, "operateamount");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperateamountNotIn(List<BigDecimal> values) {
+            addCriterion("operateAmount not in", values, "operateamount");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperateamountBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("operateAmount between", value1, value2, "operateamount");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperateamountNotBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("operateAmount not between", value1, value2, "operateamount");
             return (Criteria) this;
         }
     }

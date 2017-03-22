@@ -18,24 +18,24 @@
             <tr class="active">
                 <th>姓名</th>
                 <th>金额</th>
-                <th>标记</th>
+                <th>编号</th>
                 <th>描述</th>
             </tr>
-            <c:forEach items="${AccountModel.accounts}" varStatus="status">
+            <c:forEach items="${AccountModel.accounts}" varStatus="s">
                 <tr>
                     <td>
-                        <form:input path="accounts[${status.index}].rsName"
+                        <form:input path="accounts[${s.index}].rsName"
                                     type="text"/>
                     </td>
                     <td>
-                        <form:input path="accounts[${status.index}].operateamount"
+                        <form:input path="accounts[${s.index}].operateamount"
                                     type="text"/>
                     </td>
                     <td>
-                        <form:input path="accounts[${status.index}].personmark"
+                        <form:input path="accounts[${s.index}].id"
                                     type="text"/>
                     </td>
-                    <td><form:input path="accounts[${status.index}].description" value="${description}"
+                    <td><form:input path="accounts[${s.index}].description" value="${description}"
                                     type="text"/></td>
                 </tr>
 

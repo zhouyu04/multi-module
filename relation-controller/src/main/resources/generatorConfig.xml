@@ -58,5 +58,7 @@
 
 		<table tableName="append" domainObjectName="Append"/>
 
+		<table tableName="transaction_flow" domainObjectName="TransactionFlow"/>
+
 	</context>
 </generatorConfiguration>

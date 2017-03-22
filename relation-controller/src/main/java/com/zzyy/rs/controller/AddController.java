@@ -5,7 +5,9 @@ import com.zzyy.rs.entities.AccountModel;
 import com.zzyy.rs.entities.Append;
 import com.zzyy.rs.service.AccountService;
 import com.zzyy.rs.service.AppendService;
+import com.zzyy.rs.service.impl.AccountServiceImpl;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +22,8 @@ import java.util.List;
 @RequestMapping(value = "/add/")
 public class AddController {
 
+    private static final org.slf4j.Logger logger = LoggerFactory.getLogger(AddController.class);
+
     @Autowired
     AppendService appendService;
 
@@ -30,13 +34,12 @@ public class AddController {
     public String addEvent(@ModelAttribute("AccountModel") AccountModel accountModel, Model model) {
 
         List<Account> params = new ArrayList<Account>();
-        System.out.println(accountModel);
         for (Account account : accountModel.getAccounts()) {
             if (StringUtils.isNotEmpty(account.getRsName()) && account.getOperateamount() != null){
                 params.add(account);
             }
         }
-        accountService.batchInsert(params);
+        List<Account> result = accountService.batchInsert(params);
         model.addAttribute("description", accountModel.getAccounts().get(0).getDescription());
         return "input";
     }

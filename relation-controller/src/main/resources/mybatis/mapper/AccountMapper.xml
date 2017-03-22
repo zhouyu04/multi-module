@@ -16,8 +16,9 @@
     <result column="description" jdbcType="VARCHAR" property="description" />
     <result column="spell" jdbcType="VARCHAR" property="spell" />
     <result column="first_spell" jdbcType="VARCHAR" property="firstSpell" />
-    <result column="operateAmount" jdbcType="DECIMAL" property="operateamount" />
     <result column="personMark" jdbcType="VARCHAR" property="personmark" />
+    <result column="status" jdbcType="BIT" property="status" />
+    <result column="operateAmount" jdbcType="DECIMAL" property="operateamount" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -79,8 +80,8 @@
   </sql>
   <sql id="Base_Column_List">
     id, balance, accumulat_increase, accumulat_decrease, create_date, modify_date, operater, 
-    last_balance, rs_name, re_num, version, description, spell, first_spell, operateAmount, 
-    personMark
+    last_balance, rs_name, re_num, version, description, spell, first_spell, personMark, 
+    status, operateAmount
   </sql>
   <select id="selectByExample" parameterType="com.zzyy.rs.entities.AccountExample" resultMap="BaseResultMap">
     select
@@ -117,14 +118,14 @@
       accumulat_decrease, create_date, modify_date, 
       operater, last_balance, rs_name, 
       re_num, version, description, 
-      spell, first_spell, operateAmount, 
-      personMark)
+      spell, first_spell, personMark, 
+      status, operateAmount)
     values (#{id,jdbcType=INTEGER}, #{balance,jdbcType=DECIMAL}, #{accumulatIncrease,jdbcType=DECIMAL}, 
       #{accumulatDecrease,jdbcType=DECIMAL}, #{createDate,jdbcType=TIMESTAMP}, #{modifyDate,jdbcType=TIMESTAMP}, 
       #{operater,jdbcType=VARCHAR}, #{lastBalance,jdbcType=DECIMAL}, #{rsName,jdbcType=VARCHAR}, 
       #{reNum,jdbcType=VARCHAR}, #{version,jdbcType=INTEGER}, #{description,jdbcType=VARCHAR}, 
-      #{spell,jdbcType=VARCHAR}, #{firstSpell,jdbcType=VARCHAR}, #{operateamount,jdbcType=DECIMAL}, 
-      #{personmark,jdbcType=VARCHAR})
+      #{spell,jdbcType=VARCHAR}, #{firstSpell,jdbcType=VARCHAR}, #{personmark,jdbcType=VARCHAR}, 
+      #{status,jdbcType=BIT}, #{operateamount,jdbcType=DECIMAL})
   </insert>
   <insert id="insertSelective" parameterType="com.zzyy.rs.entities.Account">
     insert into rs_account
@@ -171,11 +172,14 @@
       <if test="firstSpell != null">
         first_spell,
       </if>
-      <if test="operateamount != null">
-        operateAmount,
-      </if>
       <if test="personmark != null">
         personMark,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="operateamount != null">
+        operateAmount,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -221,11 +225,14 @@
       <if test="firstSpell != null">
         #{firstSpell,jdbcType=VARCHAR},
       </if>
-      <if test="operateamount != null">
-        #{operateamount,jdbcType=DECIMAL},
-      </if>
       <if test="personmark != null">
         #{personmark,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=BIT},
+      </if>
+      <if test="operateamount != null">
+        #{operateamount,jdbcType=DECIMAL},
       </if>
     </trim>
   </insert>
@@ -280,11 +287,14 @@
       <if test="record.firstSpell != null">
         first_spell = #{record.firstSpell,jdbcType=VARCHAR},
       </if>
-      <if test="record.operateamount != null">
-        operateAmount = #{record.operateamount,jdbcType=DECIMAL},
-      </if>
       <if test="record.personmark != null">
         personMark = #{record.personmark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=BIT},
+      </if>
+      <if test="record.operateamount != null">
+        operateAmount = #{record.operateamount,jdbcType=DECIMAL},
       </if>
     </set>
     <if test="_parameter != null">
@@ -307,8 +317,9 @@
       description = #{record.description,jdbcType=VARCHAR},
       spell = #{record.spell,jdbcType=VARCHAR},
       first_spell = #{record.firstSpell,jdbcType=VARCHAR},
-      operateAmount = #{record.operateamount,jdbcType=DECIMAL},
-      personMark = #{record.personmark,jdbcType=VARCHAR}
+      personMark = #{record.personmark,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=BIT},
+      operateAmount = #{record.operateamount,jdbcType=DECIMAL}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -355,11 +366,14 @@
       <if test="firstSpell != null">
         first_spell = #{firstSpell,jdbcType=VARCHAR},
       </if>
-      <if test="operateamount != null">
-        operateAmount = #{operateamount,jdbcType=DECIMAL},
-      </if>
       <if test="personmark != null">
         personMark = #{personmark,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=BIT},
+      </if>
+      <if test="operateamount != null">
+        operateAmount = #{operateamount,jdbcType=DECIMAL},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -379,8 +393,9 @@
       description = #{description,jdbcType=VARCHAR},
       spell = #{spell,jdbcType=VARCHAR},
       first_spell = #{firstSpell,jdbcType=VARCHAR},
-      operateAmount = #{operateamount,jdbcType=DECIMAL},
-      personMark = #{personmark,jdbcType=VARCHAR}
+      personMark = #{personmark,jdbcType=VARCHAR},
+      status = #{status,jdbcType=BIT},
+      operateAmount = #{operateamount,jdbcType=DECIMAL}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <insert id="batchInsert" parameterType="java.util.List">
@@ -400,8 +415,9 @@
       description,
       spell,
       first_spell,
-      operateAmount,
       personMark,
+      status,
+      operateAmount,
     </trim>
      values 
     <foreach collection="list" index="index" item="item" separator=",">
@@ -420,8 +436,9 @@
         #{item.description,jdbcType=VARCHAR},
         #{item.spell,jdbcType=VARCHAR},
         #{item.firstSpell,jdbcType=VARCHAR},
-        #{item.operateamount,jdbcType=DECIMAL},
         #{item.personmark,jdbcType=VARCHAR},
+        #{item.status,jdbcType=BIT},
+        #{item.operateamount,jdbcType=DECIMAL},
       </trim>
     </foreach>
   </insert>

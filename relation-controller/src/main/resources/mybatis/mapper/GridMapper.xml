@@ -11,6 +11,9 @@
     </select>
 
     <select id="findAccountByNameAndMark" resultType="com.zzyy.rs.entities.Account">
-      SELECT * FROM rs_account WHERE rs_name = #{rsName,jdbcType=VARCHAR} AND personMark = #{personMark,jdbcType=VARCHAR};
+      SELECT * FROM rs_account WHERE id = #{accountId,jdbcType=INTEGER} AND rs_name = #{rsName,jdbcType=VARCHAR} OR
+      spell = #{spell,jdbcType=VARCHAR}
     </select>
+
+    <insert id="insertAccount"></insert>
 </mapper>
