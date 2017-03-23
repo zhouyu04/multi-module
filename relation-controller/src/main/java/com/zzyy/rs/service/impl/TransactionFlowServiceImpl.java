@@ -1,7 +1,7 @@
 package com.zzyy.rs.service.impl;
 
+import com.zzyy.rs.dao.TransactionFlowDao;
 import com.zzyy.rs.entities.TransactionFlow;
-import com.zzyy.rs.entities.TransactionFlowExample;
 import com.zzyy.rs.mapper.GridMapper;
 import com.zzyy.rs.mapper.TransactionFlowMapper;
 import com.zzyy.rs.service.TransactionFlowService;
@@ -22,8 +22,10 @@ public class TransactionFlowServiceImpl implements TransactionFlowService {
     @Autowired
     TransactionFlowMapper transactionFlowMapper;
 
+
+
     @Autowired
-    GridMapper gridMapper;
+    TransactionFlowDao transactionFlowDao;
 
     public Long getTotalElements(Integer userNumber, String userName, String describe, String status, Integer page,
                                  Integer rows, String sortOrder, String sortField) {
@@ -41,7 +43,7 @@ public class TransactionFlowServiceImpl implements TransactionFlowService {
         params.put("sortField", StringUtils.isEmpty(sortField) ? null : sortField);
         params.put("beginIndex", beginIndex);
 
-        Long result = gridMapper.getTotalTransactionElements(params);
+        Long result = transactionFlowDao.getTotalTransactionElements(params);
         return result;
     }
 
@@ -59,7 +61,7 @@ public class TransactionFlowServiceImpl implements TransactionFlowService {
         params.put("sortField", StringUtils.isEmpty(sortField) ? null : sortField);
         params.put("beginIndex", beginIndex);
 
-        List<TransactionFlow> result = gridMapper.getTransactionFlows(params);
+        List<TransactionFlow> result = transactionFlowDao.getTransactionFlows(params);
         return result;
     }
 }

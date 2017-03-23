@@ -5,6 +5,8 @@ import com.zzyy.rs.entities.Account;
 import com.zzyy.rs.entities.TransactionFlow;
 import com.zzyy.rs.service.AccountService;
 import com.zzyy.rs.service.baseService;
+import com.zzyy.rs.utils.PinYingUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.dozer.DozerBeanMapper;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,11 +14,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static com.zzyy.rs.utils.PinYingUtils.getAlpha;
 import static com.zzyy.rs.utils.PinYingUtils.getPingYin;
-import static jdk.nashorn.internal.objects.NativeDebug.map;
 
 @Service
 public class AccountServiceImpl extends baseService implements AccountService {
@@ -30,14 +33,49 @@ public class AccountServiceImpl extends baseService implements AccountService {
     DozerBeanMapper dozerBeanMapper;
 
 
-    public Long getTotalElement() {
-        Long result = accountDao.getTotalElement();
+    public Long getTotalElement(Integer userNumber, String userName, Integer page, Integer rows, String sortOrder, String sortField) {
+
+        Integer beginIndex = (page - 1) * rows;
+        String nameSpell = null;
+        if (StringUtils.isNotEmpty(userName)){
+            nameSpell = PinYingUtils.getPingYin(userName);
+        }
+
+        Map<String, Object> params = new HashMap();
+        params.put("userNumber", userNumber);
+        params.put("userName", StringUtils.isEmpty(userName) ? null : userName);
+        params.put("page", page);
+        params.put("rows", rows);
+        params.put("sortOrder", StringUtils.isEmpty(sortOrder) ? null : sortOrder);
+        params.put("sortField", StringUtils.isEmpty(sortField) ? null : sortField);
+        params.put("beginIndex", beginIndex);
+        params.put("nameSpell",nameSpell);
+
+        Long result = accountDao.getTotalElement(params);
         return result;
     }
 
 
-    public List<Account> getAccountLists() {
-        List<Account> result = accountDao.getAccountLists();
+    public List<Account> getAccountLists(Integer userNumber, String userName, Integer page, Integer rows, String sortOrder, String sortField) {
+
+        Integer beginIndex = (page - 1) * rows;
+
+        String nameSpell = null;
+        if (StringUtils.isNotEmpty(userName)){
+            nameSpell = PinYingUtils.getPingYin(userName);
+        }
+
+        Map<String, Object> params = new HashMap();
+        params.put("userNumber", userNumber);
+        params.put("userName", StringUtils.isEmpty(userName) ? null : userName);
+        params.put("page", page);
+        params.put("rows", rows);
+        params.put("sortOrder", StringUtils.isEmpty(sortOrder) ? null : sortOrder);
+        params.put("sortField", StringUtils.isEmpty(sortField) ? null : sortField);
+        params.put("beginIndex",beginIndex);
+        params.put("nameSpell",nameSpell);
+
+        List<Account> result = accountDao.getAccountLists(params);
         return result;
     }
 

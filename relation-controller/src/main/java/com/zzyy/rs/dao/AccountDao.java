@@ -1,15 +1,16 @@
 package com.zzyy.rs.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.zzyy.rs.entities.Account;
 import com.zzyy.rs.entities.TransactionFlow;
 
 public interface AccountDao {
 
-	Long getTotalElement();
+	Long getTotalElement(Map<String, Object> params);
 
-	List<Account> getAccountLists();
+	List<Account> getAccountLists(Map<String, Object> params);
 
     void batchInsert(List<Account> accounts);
 

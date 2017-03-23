@@ -4,10 +4,30 @@
 
     <select id="getTotalElement" resultType="Long">
         select count(id) from rs_account
+        <where>
+            <if test="userNumber !=null">
+                id= #{userNumber,jdbcType=INTEGER}
+            </if>
+            <if test="userName !=null">
+                AND rs_name = #{userName,jdbcType=VARCHAR} OR spell = #{nameSpell,jdbcType=VARCHAR}
+            </if>
+        </where>
     </select>
 
     <select id="getAccountLists" resultType="com.zzyy.rs.entities.Account">
         select * from rs_account
+        <where>
+            <if test="userNumber !=null">
+                id= #{userNumber,jdbcType=INTEGER}
+            </if>
+            <if test="userName !=null">
+                AND rs_name = #{userName,jdbcType=VARCHAR} OR spell = #{nameSpell,jdbcType=VARCHAR}
+            </if>
+            <if test="sortField != null">
+                ORDER BY #{sortField,jdbcType=VARCHAR} #{sortOrder,jdbcType=VARCHAR}
+            </if>
+        </where>
+        LIMIT #{beginIndex,jdbcType=INTEGER},#{rows,jdbcType=INTEGER}
     </select>
 
     <select id="findAccountByNameAndMark" resultType="com.zzyy.rs.entities.Account">

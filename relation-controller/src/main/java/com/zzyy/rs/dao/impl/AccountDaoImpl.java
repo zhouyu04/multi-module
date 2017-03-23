@@ -26,15 +26,15 @@ public class AccountDaoImpl implements AccountDao {
     TransactionFlowMapper transactionFlowMapper;
 
 
-    public Long getTotalElement() {
+    public Long getTotalElement(Map<String, Object> params) {
 
 
-        return gridmapper.getTotalElement();
+        return gridmapper.getTotalElement(params);
     }
 
 
-    public List<Account> getAccountLists() {
-        List<Account> result = gridmapper.getAccountLists();
+    public List<Account> getAccountLists(Map<String, Object> params) {
+        List<Account> result = gridmapper.getAccountLists(params);
         return result;
     }
 

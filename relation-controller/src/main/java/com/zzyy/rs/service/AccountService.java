@@ -6,9 +6,9 @@ import com.zzyy.rs.entities.Account;
 
 public interface AccountService {
 	
-	Long getTotalElement();
+	Long getTotalElement(Integer userNumber, String userName, Integer page, Integer rows, String sortOrder, String sortField);
 
-	List<Account> getAccountLists();
+	List<Account> getAccountLists(Integer userNumber, String userName, Integer page, Integer rows, String sortOrder, String sortField);
 
     List<Account> batchInsert(List<Account> accounts);
 }

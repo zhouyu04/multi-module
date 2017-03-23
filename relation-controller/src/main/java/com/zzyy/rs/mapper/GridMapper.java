@@ -8,9 +8,9 @@ import com.zzyy.rs.entities.TransactionFlow;
 
 public interface GridMapper {
 
-    Long getTotalElement();
+    Long getTotalElement(Map<String, Object> params);
 
-    List<Account> getAccountLists();
+    List<Account> getAccountLists(Map<String, Object> params);
 
     Account findAccountByNameAndMark(Map<String, Object> params);
 

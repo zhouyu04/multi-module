@@ -30,25 +30,19 @@ public class JqGridDataController {
 
 	@RequestMapping(value = "account", method = RequestMethod.GET)
 	@ResponseBody
-	public GridData totalAccounts(
-			@RequestParam(value = "businessRole", required = false, defaultValue = "") String businessRole,
-			@RequestParam(value = "beginTime", required = false) String beginTime,
-			@RequestParam(value = "endTime", required = false) String afterTime,
-			@RequestParam(value = "page", required = false) Integer page,
-			@RequestParam(value = "rows", required = false) Integer rows,
-			@RequestParam(value = "sord") String sortOrder, @RequestParam(value = "sidx") String sortField,
-			@RequestParam(value = "globalId", required = false) String globalId,
-			@RequestParam(value = "orderNo", required = false) String orderNo,
-			@RequestParam(value = "userName", required = false) String userName,
-			@RequestParam(value = "phone", required = false) String phone,
-			@RequestParam(value = "idCardNo", required = false) String idCardNo) {
+	public GridData totalAccounts(@RequestParam(value = "userNumber", required = false) Integer userNumber,
+								  @RequestParam(value = "userName", required = false) String userName,
+								  @RequestParam(value = "page", required = false) Integer page,
+								  @RequestParam(value = "rows", required = false) Integer rows,
+								  @RequestParam(value = "sord") String sortOrder,
+								  @RequestParam(value = "sidx") String sortField) {
 		GridData result = new GridData();
-		Long records = accountService.getTotalElement();// 数据库查除总条数
+		Long records = accountService.getTotalElement(userNumber,userName,page,rows,sortOrder,sortField);// 数据库查除总条数
 		
 		long totalPage = records % rows == 0 ? records / rows : records / rows + 1;// 总页数
 		
 
-		List<Account> accountList = accountService.getAccountLists();// 实际数据
+		List<Account> accountList = accountService.getAccountLists(userNumber,userName,page,rows,sortOrder,sortField);// 实际数据
 		
 		result.setPage(page);
 		result.setTotal((int) totalPage);

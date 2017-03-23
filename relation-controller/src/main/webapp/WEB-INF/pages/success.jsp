@@ -69,39 +69,12 @@ form.form-horizontal div {
 	<form class="form-horizontal" id="update" method="post">
 		<div class="row">
 			<div class="col-xs-4">
-				<label for="commercial">商户名称：</label> <select id="commercial"
-					name="commercial">
-					<option value="">全部</option>
-					<c:forEach var="businesses" items="${businesses}">
-						<option value="${businesses.applicationId}">${businesses.businessName}</option>
-					</c:forEach>
-				</select>
-			</div>
-			<div class="col-xs-4">
-				<label for="userNumber">用户编号：</label> <input id="userNumber"
+				<label for="userNumber">编号：</label> <input id="userNumber"
 					type="text">
 			</div>
 			<div class="col-xs-4">
-				<label for="globalId">全&nbsp;局&nbsp;ID：</label> <input id="globalId"
-					type="text" name="globalId">
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-xs-4">
-				<label for="type">交易类型：</label> <select id="type">
-					<option value="">全部</option>
-					<option value="BUY">购买</option>
-					<option value="CANCEL_BUY">取消购买</option>
-					<option value="PAYOUT_MONEY">派息</option>
-					<option value="TRANSFER_MONEY">转账</option>
-					<option value="PAYMENT_REQUEST_DEBIT">借贷放款</option>
-				</select>
-			</div>
-			<div class="col-xs-4">
-				<label>起始时间：</label> <input id="begin" type="text">
-			</div>
-			<div class="col-xs-4">
-				<label>期末时间: </label> <input id="after" type="text">
+				<label for="userName">姓名：</label> <input id="userName"
+					type="text" name="userName">
 			</div>
 		</div>
 		<div class="row">
@@ -199,20 +172,8 @@ form.form-horizontal div {
 					'userNumber' : function() {
 						return $('#userNumber').val();
 					},
-					'globalId' : function() {
-						return $('#globalId').val();
-					},
-					'merchantName' : function() {
-						return $('#commercial option:selected').val();
-					},
-					'operateType' : function() {
-						return $('#type option:selected').val();
-					},
-					'beginTime' : function() {
-						return $('#begin').val();
-					},
-					'endTime' : function() {
-						return $('#after').val();
+					'userName' : function() {
+						return $('#userName').val();
 					}
 				},
 				page : 1
