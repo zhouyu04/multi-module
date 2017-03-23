@@ -14,6 +14,9 @@
 	<div>
 	<a href="/add/addEvent" ,src="#">添加</a>
 	</div>
+	<div>
+		<a href="/rs/list/transactionFlow" ,src="#">流水情况</a>
+	</div>
 
 </body>
 </html>

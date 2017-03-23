@@ -47,7 +47,7 @@
 		<!-- targetPackage：Mapper接口生成的位置 -->
 		<javaClientGenerator type="XMLMAPPER"
 			targetProject="src\main\java" targetPackage="com.zzyy.rs.mapper">
-			<!-- enableSubPackages:是否让schema作为包的后缀 -->
+			<!-- enableSub Packages:是否让schema作为包的后缀 -->
 			<property name="enableSubPackages" value="false" />
 		</javaClientGenerator>
 

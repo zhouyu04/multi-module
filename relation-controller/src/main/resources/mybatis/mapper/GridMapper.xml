@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.zzyy.rs.mapper.GridMapper" >
+<mapper namespace="com.zzyy.rs.mapper.GridMapper">
 
     <select id="getTotalElement" resultType="Long">
         select count(id) from rs_account
@@ -16,4 +16,47 @@
     </select>
 
     <insert id="insertAccount"></insert>
+
+    <select id="getTotalTransactionElements" resultType="Long">
+        SELECT COUNT(id) FROM transaction_flow
+        <where>
+            <if test="userNumber != null">
+                rs_num = #{userNumber,jdbcType=INTEGER}
+            </if>
+            <if test="userName != null">
+                AND rs_name = #{userName,jdbcType=VARCHAR}
+            </if>
+            <if test="describe != null">
+                AND description = #{describe,jdbcType=VARCHAR}
+            </if>
+            <if test="status != null">
+                AND status = #{status,jdbcType=BIT}
+            </if>
+            <if test="sortField != null">
+                ORDER BY #{sortField,jdbcType=VARCHAR} #{sortOrder,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+
+    <select id="getTransactionFlows" resultType="com.zzyy.rs.entities.TransactionFlow">
+        SELECT * FROM transaction_flow
+        <where>
+            <if test="userNumber != null">
+                rs_num = #{userNumber,jdbcType=INTEGER}
+            </if>
+            <if test="userName != null">
+                AND rs_name = #{userName,jdbcType=VARCHAR}
+            </if>
+            <if test="describe != null">
+                AND description = #{describe,jdbcType=VARCHAR}
+            </if>
+            <if test="status != null">
+                AND status IS ${status}
+            </if>
+            <if test="sortField != null">
+                ORDER BY #{sortField,jdbcType=VARCHAR} #{sortOrder,jdbcType=VARCHAR}
+            </if>
+        </where>
+        LIMIT #{beginIndex,jdbcType=INTEGER},#{rows,jdbcType=INTEGER}
+    </select>
 </mapper>

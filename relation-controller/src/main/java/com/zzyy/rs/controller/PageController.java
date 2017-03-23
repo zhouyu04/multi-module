@@ -26,7 +26,14 @@ public class PageController {
 		
 		return "success";
 	}
-	
+
+	@RequestMapping(value = "rs/list/transactionFlow")
+	public String toTransactionFlow(){
+
+		return "transactionFlow";
+	}
+
+
 	@RequestMapping(value = "add/addEvent")
 	public String addEvent(){
 		
