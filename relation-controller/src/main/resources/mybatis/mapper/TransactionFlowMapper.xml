@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zzyy.rs.mapper.TransactionFlowMapper">
+  <resultMap id="BaseResultMap" type="com.zzyy.rs.entities.TransactionFlow">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="rs_name" jdbcType="VARCHAR" property="rsName" />
+    <result column="rs_num" jdbcType="INTEGER" property="rsNum" />
+    <result column="operateAmount" jdbcType="DECIMAL" property="operateamount" />
+    <result column="date_create" jdbcType="TIMESTAMP" property="dateCreate" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="status" jdbcType="BIT" property="status" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, rs_name, rs_num, operateAmount, date_create, description, status
+  </sql>
+  <select id="selectByExample" parameterType="com.zzyy.rs.entities.TransactionFlowExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from transaction_flow
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from transaction_flow
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from transaction_flow
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zzyy.rs.entities.TransactionFlowExample">
+    delete from transaction_flow
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zzyy.rs.entities.TransactionFlow">
+    insert into transaction_flow (id, rs_name, rs_num, 
+      operateAmount, date_create, description, 
+      status)
+    values (#{id,jdbcType=INTEGER}, #{rsName,jdbcType=VARCHAR}, #{rsNum,jdbcType=INTEGER}, 
+      #{operateamount,jdbcType=DECIMAL}, #{dateCreate,jdbcType=TIMESTAMP}, #{description,jdbcType=VARCHAR}, 
+      #{status,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zzyy.rs.entities.TransactionFlow">
+    insert into transaction_flow
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="rsName != null">
+        rs_name,
+      </if>
+      <if test="rsNum != null">
+        rs_num,
+      </if>
+      <if test="operateamount != null">
+        operateAmount,
+      </if>
+      <if test="dateCreate != null">
+        date_create,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="rsName != null">
+        #{rsName,jdbcType=VARCHAR},
+      </if>
+      <if test="rsNum != null">
+        #{rsNum,jdbcType=INTEGER},
+      </if>
+      <if test="operateamount != null">
+        #{operateamount,jdbcType=DECIMAL},
+      </if>
+      <if test="dateCreate != null">
+        #{dateCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zzyy.rs.entities.TransactionFlowExample" resultType="java.lang.Long">
+    select count(*) from transaction_flow
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update transaction_flow
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.rsName != null">
+        rs_name = #{record.rsName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rsNum != null">
+        rs_num = #{record.rsNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.operateamount != null">
+        operateAmount = #{record.operateamount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.dateCreate != null">
+        date_create = #{record.dateCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.description != null">
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update transaction_flow
+    set id = #{record.id,jdbcType=INTEGER},
+      rs_name = #{record.rsName,jdbcType=VARCHAR},
+      rs_num = #{record.rsNum,jdbcType=INTEGER},
+      operateAmount = #{record.operateamount,jdbcType=DECIMAL},
+      date_create = #{record.dateCreate,jdbcType=TIMESTAMP},
+      description = #{record.description,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=BIT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zzyy.rs.entities.TransactionFlow">
+    update transaction_flow
+    <set>
+      <if test="rsName != null">
+        rs_name = #{rsName,jdbcType=VARCHAR},
+      </if>
+      <if test="rsNum != null">
+        rs_num = #{rsNum,jdbcType=INTEGER},
+      </if>
+      <if test="operateamount != null">
+        operateAmount = #{operateamount,jdbcType=DECIMAL},
+      </if>
+      <if test="dateCreate != null">
+        date_create = #{dateCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zzyy.rs.entities.TransactionFlow">
+    update transaction_flow
+    set rs_name = #{rsName,jdbcType=VARCHAR},
+      rs_num = #{rsNum,jdbcType=INTEGER},
+      operateAmount = #{operateamount,jdbcType=DECIMAL},
+      date_create = #{dateCreate,jdbcType=TIMESTAMP},
+      description = #{description,jdbcType=VARCHAR},
+      status = #{status,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <insert id="batchInsert" parameterType="java.util.List">
+    insert into transaction_flow
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      id,
+      rs_name,
+      rs_num,
+      operateAmount,
+      date_create,
+      description,
+      status,
+    </trim>
+     values 
+    <foreach collection="list" index="index" item="item" separator=",">
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+        #{item.id,jdbcType=INTEGER},
+        #{item.rsName,jdbcType=VARCHAR},
+        #{item.rsNum,jdbcType=INTEGER},
+        #{item.operateamount,jdbcType=DECIMAL},
+        #{item.dateCreate,jdbcType=TIMESTAMP},
+        #{item.description,jdbcType=VARCHAR},
+        #{item.status,jdbcType=BIT},
+      </trim>
+    </foreach>
+  </insert>
+</mapper>

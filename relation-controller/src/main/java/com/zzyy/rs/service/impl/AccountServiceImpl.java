@@ -57,7 +57,7 @@ public class AccountServiceImpl extends baseService implements AccountService {
                 account.setAccumulatIncrease(account.getOperateamount());
                 account.setBalance(account.getOperateamount());
                 accountDao.insertAccount(account);
-
+                account.setStatus(true);
                 TransactionFlow transactionFlow = dozerBeanMapper.map(account, TransactionFlow.class);
                 accountDao.addTransactionFlow(transactionFlow);
             } else {
@@ -74,9 +74,8 @@ public class AccountServiceImpl extends baseService implements AccountService {
                     accountTemp.setBalance(accountTemp.getBalance().add(account.getOperateamount()));
                     accountTemp.setModifyDate(new Date());
                     accountDao.updateAccount(accountTemp);
-                    accountTemp.setStatus(true);
+                    account.setStatus(true);
                     TransactionFlow transactionFlow = dozerBeanMapper.map(account, TransactionFlow.class);
-                    transactionFlow.setStatus(true);
                     accountDao.addTransactionFlow(transactionFlow);
                     account = accountTemp;
                 }

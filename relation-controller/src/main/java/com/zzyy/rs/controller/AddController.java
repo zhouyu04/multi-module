@@ -41,7 +41,7 @@ public class AddController {
         }
         List<Account> result = accountService.batchInsert(params);
         model.addAttribute("description", accountModel.getAccounts().get(0).getDescription());
-        return "input";
+        return "inputResult";
     }
 
     @RequestMapping(value = "inputEvent", method = RequestMethod.POST)
