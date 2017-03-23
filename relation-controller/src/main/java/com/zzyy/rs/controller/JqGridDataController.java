@@ -2,6 +2,7 @@ package com.zzyy.rs.controller;
 
 import java.util.List;
 
+import com.zzyy.rs.service.TransactionFlowService;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,9 +23,12 @@ public class JqGridDataController {
 	@Autowired
 	AccountService accountService;
 
+	@Autowired
+	TransactionFlowService transactionFlowService;
+
 	@RequestMapping(value = "account", method = RequestMethod.GET)
 	@ResponseBody
-	public GridData totalTransactionFlow(
+	public GridData totalAccounts(
 			@RequestParam(value = "businessRole", required = false, defaultValue = "") String businessRole,
 			@RequestParam(value = "beginTime", required = false) String beginTime,
 			@RequestParam(value = "endTime", required = false) String afterTime,
@@ -51,6 +55,15 @@ public class JqGridDataController {
 			result.getRows().addAll(accountList);
 		}
 		return result;
+	}
+
+	@RequestMapping(value = "transactionDlow", method = RequestMethod.GET)
+	@ResponseBody
+	public GridData transactionDlow(@RequestParam(value = "businessRole", required = false, defaultValue = "") String businessRole,
+									@RequestParam(value = "beginTime", required = false) String beginTime){
+		GridData result = new GridData();
+		Long records = transactionFlowService.getTotalElements();// 数据库查除总条数
+		return null;
 	}
 
 }

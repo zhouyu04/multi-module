@@ -15,6 +15,12 @@ import com.zzyy.rs.entities.AccountModel;
 @RequestMapping(value = "/")
 public class PageController {
 
+	@RequestMapping
+	public String index(){
+
+		return "index";
+	}
+
 	@RequestMapping(value = "rs/coming")
 	public String coming(){
 		

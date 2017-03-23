@@ -183,7 +183,7 @@ form.form-horizontal div {
 					width : 150
 				} ],
 				viewrecords : true,
-				height : 250,
+				height : 400,
 				rowNum : 20,
 				pager : "#jqGridPager",
 				autowidth : true

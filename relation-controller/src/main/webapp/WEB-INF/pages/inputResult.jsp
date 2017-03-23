@@ -11,7 +11,7 @@
     <title>Insert title here</title>
 </head>
 <body>
-<form:form action="/add/input" method="post"
+<form:form action="/add/again/input" method="post"
            modelAttribute="AccountModel">
     <div class="table-responsive">
         <table class="table">
@@ -41,12 +41,13 @@
                     <td><form:input path="accounts[${s.index}].status" value="${status}"
                                     type="text" disabled="true"/></td>
                 </tr>
-
+                <input type="hidden" name="describe" value="${description}">
             </c:forEach>
         </table>
         <hr>
     </div>
-    <button type="submit" class="btn btn-success">保存</button>
+    <button type="submit" class="btn btn-success">继续添加</button>
+    <a class="btn btn-primary" href="#" role="button">完成</a>
 </form:form>
 </body>
 </html>

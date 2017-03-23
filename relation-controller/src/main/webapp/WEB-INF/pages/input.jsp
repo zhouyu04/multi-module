@@ -44,6 +44,7 @@
         <hr>
     </div>
     <button type="submit" class="btn btn-success">保存</button>
+    <a class="btn btn-primary" href="/" role="button">返回首页</a>
 </form:form>
 </body>
 </html>
