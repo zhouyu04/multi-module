@@ -9,7 +9,7 @@
 <body>
 	hello!
 	<div>
-	<a href="/rs/coming" ,src="#">进入</a>
+	<a href="/rs/coming" ,src="#">列表</a>
 	</div>
 	<div>
 	<a href="/add/addEvent" ,src="#">添加</a>

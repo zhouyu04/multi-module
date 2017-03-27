@@ -79,4 +79,31 @@ public class JqGridDataController {
 		return result;
 	}
 
+
+	@RequestMapping(value = "detail/transactionFlow", method = RequestMethod.GET)
+	@ResponseBody
+	public GridData detailTransaction(@RequestParam(value = "rowId") Integer rowId,
+									  @RequestParam(value = "rows", required = false) Integer rows,
+									  @RequestParam(value = "page", required = false) Integer page,
+									  @RequestParam(value = "sord") String sortOrder,
+									  @RequestParam(value = "sidx") String sortField){
+		GridData result = new GridData();
+		Long records = transactionFlowService.getTotalElementsById(rowId);//
+		long totalPage = records % rows == 0 ? records / rows : records / rows + 1;// 总页数
+
+		List<TransactionFlow> transactionFlowList = transactionFlowService.getTransactionFlows(rowId,null,null,null,page,rows,sortOrder,sortField);// 实际数据
+		result.setPage(page);
+		result.setTotal((int) totalPage);
+		result.setRecords(records);
+		if (transactionFlowList != null) {
+			result.getRows().addAll(transactionFlowList);
+		}
+		return result;
+	}
+
+	@RequestMapping(value = "empty", method = RequestMethod.GET)
+	@ResponseBody
+	public GridData empty(){
+		return null;
+	}
 }

@@ -21,7 +21,7 @@ public class PageController {
 		return "index";
 	}
 
-	@RequestMapping(value = "rs/coming")
+	@RequestMapping(value = "rs/coming",method = RequestMethod.GET)
 	public String coming(){
 		
 		return "success";

@@ -5,17 +5,12 @@ import com.zzyy.rs.entities.AccountModel;
 import com.zzyy.rs.entities.Append;
 import com.zzyy.rs.service.AccountService;
 import com.zzyy.rs.service.AppendService;
-import com.zzyy.rs.service.impl.AccountServiceImpl;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.view.RedirectView;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
@@ -38,7 +33,7 @@ public class AddController {
 
         List<Account> params = new ArrayList<Account>();
         for (Account account : accountModel.getAccounts()) {
-            if (StringUtils.isNotEmpty(account.getRsName()) && account.getOperateamount() != null){
+            if (StringUtils.isNotEmpty(account.getRsName()) && account.getOperateamount() != null) {
                 params.add(account);
             }
         }
@@ -47,8 +42,8 @@ public class AddController {
         return "inputResult";
     }
 
-    @RequestMapping(value = "again/input",method = RequestMethod.POST)
-    public String twiceInput(@ModelAttribute("AccountModel") AccountModel accountModel, Model model, HttpServletRequest request){
+    @RequestMapping(value = "again/input", method = RequestMethod.POST)
+    public String twiceInput(@ModelAttribute("AccountModel") AccountModel accountModel, Model model, HttpServletRequest request) {
         AccountModel accountModel2 = new AccountModel();
         for (int i = 0; i < 10; i++) {
             accountModel2.add(new Account());
@@ -69,6 +64,20 @@ public class AddController {
 
         model.addAttribute("AccountModel", accountModel);
         model.addAttribute("description", append.getDescription());
+        return "input";
+    }
+
+    @RequestMapping(value = "repay", method = RequestMethod.GET)
+    public String repayEvent(@RequestParam(value = "selectedId") Integer rsNum,
+                             @RequestParam(value = "rsName") String rsName,
+                             Model model) {
+        AccountModel accountModel = new AccountModel();
+        Account account = new Account();
+        account.setId(rsNum);
+        account.setRsName(rsName);
+        accountModel.add(account);
+
+        model.addAttribute("AccountModel", accountModel);
         return "input";
     }
 

@@ -11,4 +11,6 @@ public interface TransactionFlowService {
     Long getTotalElements(Integer userNumber, String userName, String describe, String status, Integer page, Integer rows, String sortOrder, String sortField);
 
     List<TransactionFlow> getTransactionFlows(Integer userNumber, String userName, String describe, String status, Integer page, Integer rows, String sortOrder, String sortField);
+
+    Long getTotalElementsById(Integer rowId);
 }

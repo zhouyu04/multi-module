@@ -12,4 +12,6 @@ public interface TransactionFlowDao {
     Long getTotalTransactionElements(Map<String, Object> params);
 
     List<TransactionFlow> getTransactionFlows(Map<String, Object> params);
+
+    Long getTransactionFlowsById(Integer rowID);
 }

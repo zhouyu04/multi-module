@@ -64,4 +64,8 @@ public class TransactionFlowServiceImpl implements TransactionFlowService {
         List<TransactionFlow> result = transactionFlowDao.getTransactionFlows(params);
         return result;
     }
+
+    public Long getTotalElementsById(Integer rowId) {
+        return transactionFlowDao.getTransactionFlowsById(rowId);
+    }
 }

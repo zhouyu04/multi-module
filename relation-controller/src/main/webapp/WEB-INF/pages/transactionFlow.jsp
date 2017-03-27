@@ -96,8 +96,8 @@ form.form-horizontal div {
 			</div>
 			<div class="col-xs-2">
 				<a id="export" type="button"
-					href="/export/transactionFlow/FeiYongHu?merchantName=YGONLINE&userNumber=&globalId=&operateType=&beginTime=&endTime="
-					class="btn btn-primary btn-block">导出 </a>
+					href="/"
+					class="btn btn-primary btn-block">返回首页 </a>
 			</div>
 		</div>
 	</form>
@@ -204,23 +204,7 @@ form.form-horizontal div {
 			$("#message").hide();
 		})
 		//         导出按钮操作
-		$("#export").click(
-				function() {
-					var merchantName = $('#commercial option:selected').val();
-					var userNumber = $('#userNumber').val();
-					var globalId = $('#globalId').val();
-					var operateType = $('#type option:selected').val();
-					var beginTime = $('#begin').val();
-					var endTime = $('#after').val();
-
-					var url = "/export/transactionFlow/FeiYongHu?merchantName="
-							+ merchantName + "&userNumber=" + userNumber
-							+ "&globalId=" + globalId + "&operateType="
-							+ operateType + "&beginTime=" + beginTime
-							+ "&endTime=" + endTime;
-					console.log(url);
-					$("#export").attr("href", url);
-				})
+		$("#export").click()
 	</script>
 </body>
 </html>

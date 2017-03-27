@@ -107,7 +107,15 @@ public class AccountServiceImpl extends baseService implements AccountService {
                     TransactionFlow transactionFlow = dozerBeanMapper.map(account, TransactionFlow.class);
                 } else {
                     //修改
-                    accountTemp.setAccumulatIncrease(accountTemp.getAccumulatIncrease().add(account.getOperateamount()));
+                    if (account.getOperateamount().signum() > 0){
+                        //收入
+                        accountTemp.setAccumulatIncrease(accountTemp.getAccumulatIncrease().add(account.getOperateamount()));
+                        account.setDescription("[收入]"+account.getDescription());
+                    }else{
+                        //送出
+                        accountTemp.setAccumulatDecrease(accountTemp.getAccumulatDecrease().add(account.getOperateamount()));
+                        account.setDescription("[送出]"+account.getDescription());
+                    }
                     accountTemp.setLastBalance(accountTemp.getBalance());
                     accountTemp.setBalance(accountTemp.getBalance().add(account.getOperateamount()));
                     accountTemp.setModifyDate(new Date());

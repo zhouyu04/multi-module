@@ -45,9 +45,11 @@
     </column>
     <column id="21" parent="12" name="accumulat_increase">
       <data-type>decimal(20,2)|0</data-type>
+      <default-expression>&apos;0.00&apos;</default-expression>
     </column>
     <column id="22" parent="12" name="accumulat_decrease">
       <data-type>decimal(20,2)|0</data-type>
+      <default-expression>&apos;0.00&apos;</default-expression>
     </column>
     <column id="23" parent="12" name="create_date">
       <mandatory>1</mandatory>

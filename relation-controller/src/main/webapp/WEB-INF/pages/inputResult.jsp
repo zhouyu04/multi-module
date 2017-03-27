@@ -47,7 +47,7 @@
         <hr>
     </div>
     <button type="submit" class="btn btn-success">继续添加</button>
-    <a class="btn btn-primary" href="#" role="button">完成</a>
+    <a class="btn btn-primary" href="/" role="button">完成</a>
 </form:form>
 </body>
 </html>

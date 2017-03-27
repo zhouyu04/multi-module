@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.zzyy.rs.mapper.GridMapper">
+    <resultMap id="BaseResultMap" type="com.zzyy.rs.entities.TransactionFlow">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="rs_name" jdbcType="VARCHAR" property="rsName" />
+        <result column="rs_num" jdbcType="INTEGER" property="rsNum" />
+        <result column="operateAmount" jdbcType="DECIMAL" property="operateamount" />
+        <result column="date_create" jdbcType="TIMESTAMP" property="dateCreate" />
+        <result column="description" jdbcType="VARCHAR" property="description" />
+        <result column="status" jdbcType="BIT" property="status" />
+    </resultMap>
 
     <select id="getTotalElement" resultType="Long">
         select count(id) from rs_account
@@ -23,16 +32,16 @@
             <if test="userName !=null">
                 AND rs_name = #{userName,jdbcType=VARCHAR} OR spell = #{nameSpell,jdbcType=VARCHAR}
             </if>
-            <if test="sortField != null">
-                ORDER BY #{sortField,jdbcType=VARCHAR} #{sortOrder,jdbcType=VARCHAR}
-            </if>
         </where>
+        <if test="sortField != null">
+            ORDER BY ${sortField} ${sortOrder}
+        </if>
         LIMIT #{beginIndex,jdbcType=INTEGER},#{rows,jdbcType=INTEGER}
     </select>
 
     <select id="findAccountByNameAndMark" resultType="com.zzyy.rs.entities.Account">
-      SELECT * FROM rs_account WHERE id = #{accountId,jdbcType=INTEGER} AND rs_name = #{rsName,jdbcType=VARCHAR} OR
-      spell = #{spell,jdbcType=VARCHAR}
+      SELECT * FROM rs_account WHERE id = #{accountId,jdbcType=INTEGER} AND (rs_name = #{rsName,jdbcType=VARCHAR} OR
+      spell = #{spell,jdbcType=VARCHAR})
     </select>
 
     <insert id="insertAccount"></insert>
@@ -52,9 +61,6 @@
             <if test="status != null">
                 AND status = #{status,jdbcType=BIT}
             </if>
-            <if test="sortField != null">
-                ORDER BY #{sortField,jdbcType=VARCHAR} #{sortOrder,jdbcType=VARCHAR}
-            </if>
         </where>
     </select>
 
@@ -73,10 +79,13 @@
             <if test="status != null">
                 AND status IS ${status}
             </if>
-            <if test="sortField != null">
-                ORDER BY #{sortField,jdbcType=VARCHAR} #{sortOrder,jdbcType=VARCHAR}
-            </if>
         </where>
+        <if test="sortField != null">
+            ORDER BY ${sortField} ${sortOrder}
+        </if>
+        <if test="sortField == null">
+            ORDER BY transaction_flow.date_create DESC
+        </if>
         LIMIT #{beginIndex,jdbcType=INTEGER},#{rows,jdbcType=INTEGER}
     </select>
 </mapper>
