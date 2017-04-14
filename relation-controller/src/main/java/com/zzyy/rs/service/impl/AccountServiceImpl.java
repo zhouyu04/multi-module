@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -109,10 +110,16 @@ public class AccountServiceImpl extends baseService implements AccountService {
                     //修改
                     if (account.getOperateamount().signum() > 0){
                         //收入
+                        if (accountTemp.getAccumulatIncrease() == null){
+                            accountTemp.setAccumulatIncrease(new BigDecimal(0));
+                        }
                         accountTemp.setAccumulatIncrease(accountTemp.getAccumulatIncrease().add(account.getOperateamount()));
                         account.setDescription("[收入]"+account.getDescription());
                     }else{
                         //送出
+                        if(accountTemp.getAccumulatDecrease() == null){
+                            accountTemp.setAccumulatDecrease(new BigDecimal(0));
+                        }
                         accountTemp.setAccumulatDecrease(accountTemp.getAccumulatDecrease().add(account.getOperateamount()));
                         account.setDescription("[送出]"+account.getDescription());
                     }
