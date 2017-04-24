@@ -88,4 +88,9 @@
         </if>
         LIMIT #{beginIndex,jdbcType=INTEGER},#{rows,jdbcType=INTEGER}
     </select>
+
+    <select id="findUserAccountByUsername" resultType="com.zzyy.rs.entities.User">
+        SELECT userName username ,passWord password, actualName acturalname
+        FROM user WHERE userName = #{username,jdbcType=VARCHAR}
+    </select>
 </mapper>

@@ -40,24 +40,19 @@
                 margin-bottom: 5px;
                 margin-right: 8px;
             }
-
             table th {
                 text-align: center;
             }
-
             table td {
                 text-align: center;
             }
-
             form.form-horizontal label {
                 width: 100px;
             }
-
             form.form-horizontal input, select {
                 width: 60%;
                 height: 26px;
             }
-
             form.form-horizontal div {
                 padding-top: 10px;
             }
@@ -118,9 +113,7 @@ success!!!
             return "";
         }
     }
-
     function statusFormatted(cellValue, options, rowObject) {
-
         var formatted = null;
         if (cellValue == true) {
             formatted = "成功";
@@ -133,9 +126,7 @@ success!!!
             return formatted;
         }
     }
-
     $(document).ready(function () {
-
         $("#jqGrid").jqGrid({
             url: '/rs/account',
             mtype: "GET",
@@ -201,7 +192,6 @@ success!!!
             onPaging: clearSelection
         });
     });
-
     $("#jqGridDetails").jqGrid({
         url: '/rs/empty',
         mtype: "GET",
@@ -223,19 +213,14 @@ success!!!
         caption: '编号::',
         pager: "#jqGridDetailsPager"
     });
-
     function clearSelection() {
         jQuery("#jqGridDetails").jqGrid('setGridParam', {url: "/rs/empty", datatype: 'json'}); // the last setting is for demo purpose only
         jQuery("#jqGridDetails").jqGrid('setCaption', '编号:: none');
         jQuery("#jqGridDetails").trigger("reloadGrid");
-
     }
-
     function getSelectedRows() {
         var grid = $("#jqGrid");
         var rowKey = grid.getGridParam("selrow");
-
-
         if (!rowKey)
             alert("请选择一个对象!");
         else {
@@ -271,7 +256,6 @@ success!!!
     })
     //         导出按钮操作
     $("#export").click(
-
     )
 </script>
 </body>

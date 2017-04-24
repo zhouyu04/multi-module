@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.zzyy.rs.entities.Account;
 import com.zzyy.rs.entities.TransactionFlow;
+import com.zzyy.rs.entities.User;
 
 public interface GridMapper {
 
@@ -17,4 +18,6 @@ public interface GridMapper {
     Long getTotalTransactionElements(Map<String, Object> params);
 
     List<TransactionFlow> getTransactionFlows(Map<String, Object> params);
+
+    User findUserAccountByUsername(String username);
 }

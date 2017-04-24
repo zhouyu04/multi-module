@@ -3,6 +3,7 @@ package com.zzyy.rs.dao.impl;
 import com.zzyy.rs.dao.AccountDao;
 import com.zzyy.rs.entities.Account;
 import com.zzyy.rs.entities.TransactionFlow;
+import com.zzyy.rs.entities.User;
 import com.zzyy.rs.mapper.AccountMapper;
 import com.zzyy.rs.mapper.GridMapper;
 import com.zzyy.rs.mapper.TransactionFlowMapper;
@@ -73,6 +74,11 @@ public class AccountDaoImpl implements AccountDao {
     public void addTransactionFlow(TransactionFlow transactionFlow) {
 
         transactionFlowMapper.insert(transactionFlow);
+    }
+
+    public User findUserAccountByUsername(String username) {
+
+        return gridmapper.findUserAccountByUsername(username);
     }
 
 }

@@ -3,6 +3,8 @@ package com.zzyy.rs.mapper;
 import com.zzyy.rs.entities.TransactionFlow;
 import com.zzyy.rs.entities.TransactionFlowExample;
 import java.util.List;
+
+import com.zzyy.rs.entities.User;
 import org.apache.ibatis.annotations.Param;
 
 public interface TransactionFlowMapper {

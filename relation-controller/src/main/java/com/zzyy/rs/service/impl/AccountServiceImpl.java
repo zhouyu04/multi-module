@@ -3,6 +3,7 @@ package com.zzyy.rs.service.impl;
 import com.zzyy.rs.dao.AccountDao;
 import com.zzyy.rs.entities.Account;
 import com.zzyy.rs.entities.TransactionFlow;
+import com.zzyy.rs.entities.User;
 import com.zzyy.rs.service.AccountService;
 import com.zzyy.rs.service.baseService;
 import com.zzyy.rs.utils.PinYingUtils;
@@ -135,6 +136,12 @@ public class AccountServiceImpl extends baseService implements AccountService {
             }
         }
         return accounts;
+    }
+
+    public User findUserAccountByUsername(String username) {
+
+
+        return accountDao.findUserAccountByUsername(username);
     }
 
 }

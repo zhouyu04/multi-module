@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.zzyy.rs.entities.Account;
 import com.zzyy.rs.entities.TransactionFlow;
+import com.zzyy.rs.entities.User;
 
 public interface AccountDao {
 
@@ -23,4 +24,6 @@ public interface AccountDao {
     Account findAccountById(Integer id);
 
     void addTransactionFlow(TransactionFlow transactionFlow);
+
+    User findUserAccountByUsername(String username);
 }
