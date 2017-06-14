@@ -34,6 +34,8 @@ hello!
 <div>
     <a href="/rs/list/transactionFlow" ,src="#">流水情况</a>
 </div>
-
+<div>
+    <a href="/rs/list/upload" ,src="#">上传文件</a>
+</div>
 </body>
 </html>

@@ -33,6 +33,12 @@ public class PageController {
 		return "transactionFlow";
 	}
 
+	@RequestMapping(value = "rs/list/upload")
+	public String toUpload(){
+
+		return "upload";
+	}
+
 
 	@RequestMapping(value = "add/addEvent")
 	public String addEvent(){
