@@ -96,25 +96,34 @@ public class AddController {
 
     //上传
     @RequestMapping(value = "file",method = RequestMethod.POST)
-    public String upload(HttpServletRequest request,Model model,@RequestParam("file")MultipartFile file){
+    public String upload(HttpServletRequest request,Model model,@RequestParam("file")MultipartFile[] file){
         try {
 //        multipartResolver.
-        String fileName = file.getOriginalFilename();
-        String path = "D:/temp/" + fileName;
+        String fileName =null;
+        String path =null;
         String filePath = "uploadFiles/court";
-        File dir = new File(path);
-        if(!dir.exists()){
-            dir.mkdirs();
-        }
-            file.transferTo(dir);
-            FtpClientUtil fcu=new FtpClientUtil();
-            fcu.setEncoding("GBK");
-            fcu.connect("116.62.12.85", Integer.parseInt("21"),"huangkewei", "admin", false);//链接
-            Boolean flag=fcu.setAndCreateWorkingDirectory(filePath);//创建文件夹
-            InputStream in = new FileInputStream(path);
-            fcu.putFile(fileName, in); //上传到ftp
+
+        FtpClientUtil fcu=new FtpClientUtil();
+        fcu.setEncoding("GBK");
+        fcu.connect("116.62.12.85", Integer.parseInt("21"),"huangkewei", "admin", false);//链接
+
+            for (MultipartFile mul:file) {
+                fileName = mul.getOriginalFilename();
+                path = "D:/temp/" + fileName;
+                File dir = new File(path);
+                if(!dir.exists()){
+                    dir.mkdirs();
+                }
+
+                mul.transferTo(dir);
+                Boolean flag=fcu.setAndCreateWorkingDirectory(filePath);//创建文件夹
+                InputStream in = new FileInputStream(path);
+                fcu.putFile(fileName, in); //上传到ftp
+
+                Integer fileId = attachmentService.save(filePath,fileName);
+                System.out.println("------------------------------"+fileId);
+            }
             fcu.disconnect();//断开链接
-            attachmentService.save(filePath,fileName);
         } catch (IOException e) {
             e.printStackTrace();
         }

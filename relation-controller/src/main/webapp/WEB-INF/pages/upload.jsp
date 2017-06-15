@@ -16,6 +16,8 @@
 
 <form action="/add/file" enctype="multipart/form-data" method="post">
     <input type="file" class="form-control" name="file">
+    <input type="file" class="form-control" name="file">
+    <input type="file" class="form-control" name="file">
     <br>
     <div class="row">
         <div class="col-xs-2">
