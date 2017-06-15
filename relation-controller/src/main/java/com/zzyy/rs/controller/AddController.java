@@ -106,7 +106,7 @@ public class AddController {
         FtpClientUtil fcu=new FtpClientUtil();
         fcu.setEncoding("GBK");
         fcu.connect("116.62.12.85", Integer.parseInt("21"),"huangkewei", "admin", false);//链接
-
+        Boolean flag=fcu.setAndCreateWorkingDirectory(filePath);//创建文件夹
             for (MultipartFile mul:file) {
                 fileName = mul.getOriginalFilename();
                 path = "D:/temp/" + fileName;
@@ -116,11 +116,11 @@ public class AddController {
                 }
 
                 mul.transferTo(dir);
-                Boolean flag=fcu.setAndCreateWorkingDirectory(filePath);//创建文件夹
+
                 InputStream in = new FileInputStream(path);
                 fcu.putFile(fileName, in); //上传到ftp
 
-                Integer fileId = attachmentService.save(filePath,fileName);
+                Long fileId = attachmentService.save(filePath,fileName);
                 System.out.println("------------------------------"+fileId);
             }
             fcu.disconnect();//断开链接

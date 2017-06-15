@@ -2,11 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.zzyy.rs.mapper.AttachmentMapper">
 
-    <insert id="save" keyProperty="fileId">
-        insert into relation_attachment (fileId, caseId, fileName,
-      filePath, fileType, fileSize)
-    values (#{fileid,jdbcType=BIGINT}, #{caseid,jdbcType=VARCHAR}, #{fileName,jdbcType=VARCHAR},
-      #{filePath,jdbcType=VARCHAR}, #{filetype,jdbcType=VARCHAR}, #{filesize,jdbcType=INTEGER})
+    <insert id="save" parameterType="com.zzyy.rs.entities.RelationAttachment">
+        <selectKey resultType="java.lang.Long" order="AFTER" keyProperty="fileid">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into relation_attachment (fileid, caseId, filename,
+      filepath, fileType, fileSize)
+    values (#{fileid,jdbcType=BIGINT}, #{caseid,jdbcType=VARCHAR}, #{filename,jdbcType=VARCHAR},
+      #{filepath,jdbcType=VARCHAR}, #{filetype,jdbcType=VARCHAR}, #{filesize,jdbcType=INTEGER})
     </insert>
 
 </mapper>
