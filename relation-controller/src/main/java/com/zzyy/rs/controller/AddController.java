@@ -5,6 +5,7 @@ import com.zzyy.rs.entities.AccountModel;
 import com.zzyy.rs.entities.Append;
 import com.zzyy.rs.service.AccountService;
 import com.zzyy.rs.service.AppendService;
+import com.zzyy.rs.service.AttachmentService;
 import com.zzyy.rs.utils.FtpClientUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.LoggerFactory;
@@ -38,7 +39,7 @@ public class AddController {
     AccountService accountService;
 
     @Autowired
-    MultipartResolver multipartResolver;
+    AttachmentService attachmentService;
 
     @RequestMapping(value = "input", method = RequestMethod.POST)
     public String addEvent(@ModelAttribute("AccountModel") AccountModel accountModel, Model model) {
@@ -113,6 +114,7 @@ public class AddController {
             InputStream in = new FileInputStream(path);
             fcu.putFile(fileName, in); //上传到ftp
             fcu.disconnect();//断开链接
+            attachmentService.save(filePath,fileName);
         } catch (IOException e) {
             e.printStackTrace();
         }
