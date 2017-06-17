@@ -2,6 +2,7 @@ package com.zzyy.rs.mapper;
 
 import com.zzyy.rs.entities.RelationAttachment;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -9,4 +10,6 @@ import java.util.Map;
  */
 public interface AttachmentMapper {
     Integer save(RelationAttachment params);
+
+    List<String> findNames();
 }

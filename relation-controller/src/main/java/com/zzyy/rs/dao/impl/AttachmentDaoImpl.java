@@ -6,6 +6,8 @@ import com.zzyy.rs.mapper.AttachmentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * Created by Administrator on 2017/6/15 0015.
  */
@@ -17,5 +19,9 @@ public class AttachmentDaoImpl implements AttachmentDao {
 
     public Integer save(RelationAttachment params) {
         return attachmentMapper.save(params);
+    }
+
+    public List<String> findNames() {
+        return attachmentMapper.findNames();
     }
 }

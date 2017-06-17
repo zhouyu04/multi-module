@@ -8,6 +8,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by Administrator on 2017/6/15 0015.
  */
@@ -28,5 +30,11 @@ public class AttachmentServiceImp extends baseService implements AttachmentServi
          attachmentDao.save(relationAttachment);
 
         return relationAttachment.getFileid();
+    }
+
+    public List<String> findFileNames() {
+
+
+        return attachmentDao.findNames();
     }
 }

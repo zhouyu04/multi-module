@@ -561,7 +561,14 @@ public class FtpClientUtil {
 			
 		}
 
-	
+		public boolean cd(String dir){
+			try {
+				return ftp.changeWorkingDirectory(dir);
+			} catch (IOException e) {
+				e.printStackTrace();
+				return false;
+			}
+		}
 	
 
 }

@@ -37,5 +37,14 @@ hello!
 <div>
     <a href="/rs/list/upload" ,src="#">上传文件</a>
 </div>
+<div>
+    <a href="/rs/list/show" ,src="#">展示文件</a>
+</div>
+<div>
+    <a href="/rs/list/word" ,src="#">生成WORD</a>
+</div>
+<div>
+    <a href="/rs/list/pdf" ,src="#">生成PDF</a>
+</div>
 </body>
 </html>
