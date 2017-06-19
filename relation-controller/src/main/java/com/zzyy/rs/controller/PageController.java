@@ -5,13 +5,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import com.zzyy.rs.service.AttachmentService;
+import com.zzyy.rs.utils.Doc2Pdf;
 import com.zzyy.rs.utils.FtpClientUtil;
 import com.zzyy.rs.utils.WordGenerator;
-import org.apache.poi.xwpf.converter.pdf.PdfConverter;
-import org.apache.poi.xwpf.converter.pdf.PdfOptions;
-import org.apache.poi.xwpf.usermodel.XWPFDocument;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -117,21 +115,19 @@ public class PageController {
 		Map<String , Object> map = new HashMap<String, Object>();
 		try {
 			request.setCharacterEncoding("utf-8");
-			String name = "测试生成pdf用户";
+			String name = "测试被告用户";
 			map.put("name",name);
 
 			File file = null;
 			InputStream fin = null;
 			ServletOutputStream out = null;
 
+
 			file = WordGenerator.createDoc(map, "resume");
 			fin = new FileInputStream(file);
-			XWPFDocument document = new XWPFDocument(fin);
-			OutputStream outputStream = new FileOutputStream("D:temp");
-			PdfOptions options = PdfOptions.create();
-			ExtITextFontRegistry fontProvider=ExtITextFontRegistry.getRegistry();
-			options.fontProvider(fontProvider);
-			PdfConverter.getInstance().convert(document, out, options);
+
+			Doc2Pdf.convert("C:/Users/Administrator/Desktop/法院文档/湖南省攸县人民法院.docx","C:/Users/Administrator/Desktop/法院文档/湖南省攸县人民法院.pdf");
+
 			response.setCharacterEncoding("utf-8");
 			response.setContentType("application/msword");
 			// 设置浏览器以下载的方式处理该文件默认名为resume.doc
