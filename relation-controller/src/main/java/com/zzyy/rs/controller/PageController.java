@@ -10,6 +10,7 @@ import com.zzyy.rs.utils.Doc2Pdf;
 import com.zzyy.rs.utils.FtpClientUtil;
 import com.zzyy.rs.utils.WordGenerator;
 
+import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -93,8 +94,8 @@ public class PageController {
 			response.setCharacterEncoding("utf-8");
 			response.setContentType("application/msword");
 			// 设置浏览器以下载的方式处理该文件默认名为resume.doc
-			response.addHeader("Content-Disposition", "attachment;filename="+new String(("湖南省攸县人民法院.pdf").getBytes("GB2312"),"iso8859-1"));
-			response.setContentType("application/pdf");
+			response.addHeader("Content-Disposition", "attachment;filename="+new String(("湖南省攸县人民法院.docx").getBytes("GB2312"),"iso8859-1"));
+			response.setContentType("application/docx");
 
 			out = response.getOutputStream();
 			byte[] buffer = new byte[512];  // 缓冲区
@@ -126,7 +127,6 @@ public class PageController {
 			file = WordGenerator.createDoc(map, "resume");
 			fin = new FileInputStream(file);
 
-			Doc2Pdf.convert("C:/Users/Administrator/Desktop/法院文档/湖南省攸县人民法院.docx","C:/Users/Administrator/Desktop/法院文档/湖南省攸县人民法院.pdf");
 
 			response.setCharacterEncoding("utf-8");
 			response.setContentType("application/msword");

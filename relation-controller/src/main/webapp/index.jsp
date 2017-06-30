@@ -46,5 +46,23 @@ hello!
 <div>
     <a href="/rs/list/pdf" ,src="#">生成PDF</a>
 </div>
+
+<form action="">
+    <input id="test" type="text">
+</form>
+<script type='text/javascript' src='<c:url value="/plugins/jquery-2.2.3.min.js"/>'></script>
+<script type="text/javascript">
+
+
+    $("#test").focusout(function(){
+        alert(1);
+        var linkPhone = $("#test").val();
+        alert(linkPhone);
+        if(!(/^[0-9]*$/.test(linkPhone))){
+            alert("只能为数字");
+            return false;
+        }
+    });
+</script>
 </body>
 </html>
