@@ -122,9 +122,17 @@ public class TestConnection {
 		DataSource source = new FileDataSource(usFile);
 		fileBody.setDataHandler(new DataHandler(source));
 		sun.misc.BASE64Encoder enc = new sun.misc.BASE64Encoder();
-		String name = new String("图片".getBytes(),"UTF-8");
-		fileBody.setFileName(name);
+		fileBody.setFileName(MimeUtility.encodeText("图片"));
 		multipart.addBodyPart(fileBody);
+
+		 /*添加附件*/
+		File usFile2 = new File("C:/Users/Administrator/Desktop/湖南省攸县人民法院.doc");
+		MimeBodyPart fileBody2 = new MimeBodyPart();
+		DataSource source2 = new FileDataSource(usFile2);
+		fileBody2.setDataHandler(new DataHandler(source2));
+		sun.misc.BASE64Encoder enc2 = new sun.misc.BASE64Encoder();
+		fileBody2.setFileName(MimeUtility.encodeText("湖南省攸县人民法院.doc"));
+		multipart.addBodyPart(fileBody2);
 
 		message.setContent(multipart);
 		message.setSentDate(new Date());
