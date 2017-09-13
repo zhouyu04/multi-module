@@ -1,8 +1,6 @@
 package com.zzyy.rs.controller;
 
-import com.zzyy.rs.entities.Account;
-import com.zzyy.rs.entities.AccountModel;
-import com.zzyy.rs.entities.Append;
+import com.zzyy.rs.entities.*;
 import com.zzyy.rs.service.AccountService;
 import com.zzyy.rs.service.AppendService;
 import com.zzyy.rs.service.AttachmentService;
@@ -12,15 +10,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartResolver;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.*;
 import java.net.URLEncoder;
 import java.util.ArrayList;
@@ -107,6 +103,7 @@ public class AddController {
         fcu.setEncoding("GBK");
         fcu.connect("116.62.12.85", Integer.parseInt("21"),"huangkewei", "admin", false);//链接
         Boolean flag=fcu.setAndCreateWorkingDirectory(filePath);//创建文件夹
+            //多个文件批量遍历上传
             for (MultipartFile mul:file) {
                 fileName = mul.getOriginalFilename();
                 path = "D:/temp/" + fileName;
@@ -119,7 +116,7 @@ public class AddController {
 
                 InputStream in = new FileInputStream(path);
                 fcu.putFile(fileName, in); //上传到ftp
-
+                //路径地址保存到数据库
                 Long fileId = attachmentService.save(filePath,fileName);
                 System.out.println("------------------------------"+fileId);
             }
@@ -157,5 +154,53 @@ public class AddController {
             out.flush();
         }
         out.close();
+    }
+
+    @ResponseBody
+    @RequestMapping("fileUpload3")
+    public String fileUpload3(@RequestParam(value="file",required= false) MultipartFile[] files, HttpSession session, User user) throws IOException{
+
+        long  startTime=System.currentTimeMillis();
+        System.out.println(files.length);
+        System.out.println(user.getUsername()+"===="+user.getPassword());
+        if(files!=null&&files.length>0){
+            //循环获取file数组中得文件
+            for(int i = 0;i<files.length;i++){
+                MultipartFile file = files[i];
+                //这个方法最慢
+                 /*FileUtils.writeByteArrayToFile(new File("E:\\"+file.getOriginalFilename()), file.getBytes());*/
+
+                //这个方法最快
+                file.transferTo(new File("E:\\"+file.getOriginalFilename()));
+
+                //这个方法其次
+                /*OutputStream os=new FileOutputStream("E:/"+file.getOriginalFilename());
+                 //获取输入流 CommonsMultipartFile 中可以直接得到文件的流
+                 InputStream is=file.getInputStream();
+                 byte[] bts = new byte[2048];
+                 //一个一个字节的读取并写入
+                 while(is.read(bts)!=-1)
+                 {
+                     os.write(bts);
+                 }
+                os.flush();
+                os.close();
+                is.close();*/
+            }
+        }
+        long  endTime=System.currentTimeMillis();
+        System.out.println("方法四的运行时间："+String.valueOf(endTime-startTime)+"ms");
+        return "success";
+    }
+
+    /**
+     * 这里是获取上传文件状态信息的访问接口
+     * @param session
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("getStatus")
+    public UploadStatus getStatus(HttpSession session){
+        return (UploadStatus)session.getAttribute("upload_status");
     }
 }

@@ -37,11 +37,11 @@ public class WordGenerator {
         String fileDirectory = "/";
         configuration.setClassForTemplateLoading(WordGenerator.class, fileDirectory);
         /** 加载模板 **/
-        Template template = configuration.getTemplate("湖南省攸县人民法院.ftl");
+        Template template = configuration.getTemplate("法定代表人身份证明书.ftl");
 
         /** 指定输出word文件的路径 **/
 
-        String name = "湖南省攸县人民法院" + (int) (Math.random() * 100000) + ".doc";
+        String name = "法定代表人身份证明书" + (int) (Math.random() * 100000) + ".doc";
         File f = new File(name);
         FileOutputStream fos = new FileOutputStream(f);
         try {

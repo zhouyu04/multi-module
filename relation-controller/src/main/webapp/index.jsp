@@ -37,6 +37,11 @@ hello!
 <div>
     <a href="/rs/list/upload" ,src="#">上传文件</a>
 </div>
+
+<div>
+    <a href="/rs/list/uploadfy" ,src="#">带进度条上传文件</a>
+</div>
+
 <div>
     <a href="/rs/list/show" ,src="#">展示文件</a>
 </div>
