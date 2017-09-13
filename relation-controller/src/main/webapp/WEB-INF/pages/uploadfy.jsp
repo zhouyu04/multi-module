@@ -28,7 +28,7 @@
 
 </form>
 
-<button onclick="ajaxtSubmit()">ajax提交</button>
+<button id="ajaxtSubmit">ajax提交</button>
 
 <div style="border:black solid 1px; width: 800px;height: 10px;">
     <div id="result" style="height: 8px;background: green;position: relative; top: 1px;left: 1px;"></div>
@@ -51,10 +51,29 @@
                 }
                 $("#result").width(percent+"%");
             },"json");
-        },100);
+        },500);
     }
 
+
+    $("#ajaxtSubmit").click(function(){
+        ajaxtSubmit();
+
+        var eventFun = function(){
+            $.get("/add/getStatus",{},function(data,status){
+                console.log(showStatus+data);
+                var percent = data.percent;
+                if(percent >= 100){
+                    clearInterval(intervalId);
+                    percent = 100;//不能大于100
+                }
+                $("#result").width(percent+"%");
+            },"json");
+        }
+        var intervalId = window.setInterval(eventFun,500);
+    });
+
     function ajaxtSubmit(){
+
         var files = document.getElementById("uploadFile").files;
         alert(files.length);
         var formData = new FormData();
@@ -63,7 +82,6 @@
             formData.append("username","zxm");
             formData.append("password","123456");
         }
-
         $.ajax({
             type:"post",
             url:"/add/fileUpload3",
@@ -74,13 +92,12 @@
              request.setRequestHeader("filePath", file_path);
              }, */
             success:function(data){
-                console.log(data);
+                console.log("fileUpload3"+data);
             },
             error:function(e){
                 console.log(e);
             }
         });
-        showStatus();
 
     }
 
