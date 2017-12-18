@@ -4,22 +4,35 @@
 
 <generatorConfiguration>
 
-	<context id="MySql2Tables" targetRuntime="MyBatis3">
-		<property name="mergeable" value="false"/>
+	<context id="MySql2Tables" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+		<!--<property name="mergeable" value="false"/>
 
-		<plugin type="utils.BatchInsertPlugin"/>
+		<plugin type="utils.BatchInsertPlugin"/>-->
 
-		<commentGenerator>
-			<!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+		<property name="beginningDelimiter" value="`" />
+		<property name="endingDelimiter" value="`" />
+		<property name="autoDelimitKeywords" value="true" />
+		<!-- 指定生成的java文件的编码,没有直接生成到项目时中文可能会乱码 -->
+		<property name="javaFileEncoding" value="UTF-8" />
+		<!-- 这里的type里写的是你的实现类的类全路径 -->
+
+		<plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+			<property name="mappers" value="tk.mybatis.mapper.common.Mapper" />
+		</plugin>
+
+		<!--<commentGenerator type="com.zzyy.rs.Listener.MyCommentGenerator">
+			&lt;!&ndash;<property name="javaFileEncoding" value="UTF-8"/>
+			&lt;!&ndash; 是否去除自动生成的注释 true：是 ： false:否 &ndash;&gt;
 			<property name="suppressAllComments" value="true" />
-		</commentGenerator>
+			<property name="suppressDate" value="true" />&ndash;&gt;
+		</commentGenerator>-->
 
 
 
 		<!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
-			connectionURL="jdbc:mysql://localhost:3306/relation" userId="root"
-			password="root">
+			connectionURL="jdbc:mysql://localhost:3306/dgt_db" userId="root"
+			password="123456">
 		</jdbcConnection>
 
 		<!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true时把JDBC DECIMAL 
@@ -30,7 +43,7 @@
 
 		<!-- targetProject:生成Entity类的路径 -->
 		<javaModelGenerator targetProject=".\src\main\java"
-			targetPackage="com.zzyy.rs.entities">
+			targetPackage="com.dgt.model">
 			<!-- enableSubPackages:是否让schema作为包的后缀 -->
 			<property name="enableSubPackages" value="false" />
 			<!-- 从数据库返回的值被清理前后的空格 -->
@@ -39,26 +52,71 @@
 
 		<!-- targetProject:XxxMapper.xml映射文件生成的路径 -->
 		<sqlMapGenerator targetProject="src\main\resources"
-			targetPackage="mybatis.mapper">
+			targetPackage="com.test.mapper">
 			<!-- enableSubPackages:是否让schema作为包的后缀 -->
 			<property name="enableSubPackages" value="false" />
 		</sqlMapGenerator>
 
 		<!-- targetPackage：Mapper接口生成的位置 -->
 		<javaClientGenerator type="XMLMAPPER"
-			targetProject="src\main\java" targetPackage="com.zzyy.rs.mapper">
+			targetProject="src\main\java" targetPackage="com.dgt.dal">
 			<!-- enableSub Packages:是否让schema作为包的后缀 -->
 			<property name="enableSubPackages" value="false" />
 		</javaClientGenerator>
 
-		<!-- 数据库表名字和我们的entity类对应的映射指定 -->
-		<table tableName="rs_account" domainObjectName="Account" />
+		<!--&lt;!&ndash; 数据库表名字和我们的entity类对应的映射指定 &ndash;&gt;
+		<table schema="" tableName="t_dgt_account" domainObjectName="TDgtAccount"/>
 		
-		<table tableName="user" domainObjectName="User" />
+		<table tableName="t_dgt_advertisement" domainObjectName="TDgtAdvertisement" />
 
-		<table tableName="append" domainObjectName="Append"/>
+		<table tableName="t_dgt_appeal" domainObjectName="TDgtAppeal"/>
 
-		<table tableName="transaction_flow" domainObjectName="TransactionFlow"/>
+		<table tableName="t_dgt_bill" domainObjectName="TDgtBill"/>
+
+		<table tableName="t_dgt_cost_price" domainObjectName="TDgtCostPrice"/>
+
+		<table tableName="t_dgt_fraction" domainObjectName="TDgtFraction"/>
+
+		<table tableName="t_dgt_lawsuit_fee_section" domainObjectName="TDgtLawsuitFeeSection"/>
+
+		<table tableName="t_dgt_order" domainObjectName="TDgtOrder"/>
+
+		<table tableName="t_dgt_postpone_apply" domainObjectName="TDgtPostponeApply"/>
+
+		<table tableName="t_dgt_profit_statistics" domainObjectName="TDgtProfitStatistics"/>
+
+		<table tableName="t_dgt_prosecute_record" domainObjectName="TDgtProsecuteRecord"/>
+
+		<table tableName="t_dgt_refund_plan" domainObjectName="TDgtRefundPlan"/>
+
+		<table tableName="t_dgt_transaction_flow" domainObjectName="TDgtTransactionFlow"/>
+
+		<table tableName="t_dgt_user" domainObjectName="TDgtUser"/>
+
+		<table tableName="t_dgt_user_bank" domainObjectName="TDgtUserBank"/>
+
+		<table tableName="t_dgt_user_friends" domainObjectName="TDgtUserFriends"/>
+
+		<table tableName="t_dgt_user_imginfo" domainObjectName="TDgtUserImginfo"/>
+
+		<table tableName="t_dgt_user_info" domainObjectName="TDgtUserInfo"/>
+
+		<table tableName="t_dgt_user_loan_record" domainObjectName="TDgtUserLoanRecord"/>
+
+		<table tableName="t_dgt_user_message" domainObjectName="TDgtUserMessage"/>
+
+		<table tableName="t_dgt_user_three" domainObjectName="TDgtUserThree"/>
+
+		<table tableName="t_sys_resource" domainObjectName="TSysResource"/>
+
+		<table tableName="t_sys_role" domainObjectName="TSysRole"/>
+
+		<table tableName="t_sys_role_resource" domainObjectName="TSysRoleResource"/>
+
+		<table tableName="t_sys_user" domainObjectName="TSysUser"/>
+
+		<table tableName="t_sys_user_role" domainObjectName="TSysUserRole"/>-->
+		<table tableName="t_dgt_iou" domainObjectName="TDgtIou"/>
 
 	</context>
 </generatorConfiguration>

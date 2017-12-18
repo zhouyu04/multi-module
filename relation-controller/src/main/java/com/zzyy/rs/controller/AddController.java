@@ -6,6 +6,7 @@ import com.zzyy.rs.service.AppendService;
 import com.zzyy.rs.service.AttachmentService;
 import com.zzyy.rs.utils.FtpClientUtil;
 import org.apache.commons.lang3.StringUtils;
+import org.mybatis.generator.internal.DefaultCommentGenerator;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

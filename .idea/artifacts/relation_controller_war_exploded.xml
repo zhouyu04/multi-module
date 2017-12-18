@@ -103,6 +103,8 @@
           <element id="library" level="project" name="Maven: net.sf.ezmorph:ezmorph:1.0.6" />
           <element id="library" level="project" name="Maven: javax.mail:mail:1.5.0-b01" />
           <element id="library" level="project" name="Maven: javax.activation:activation:1.1" />
+          <element id="library" level="project" name="Maven: tk.mybatis:mapper:3.3.9" />
+          <element id="library" level="project" name="Maven: javax.persistence:persistence-api:1.0" />
         </element>
       </element>
       <element id="directory" name="META-INF">

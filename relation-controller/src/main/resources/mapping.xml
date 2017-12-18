@@ -12,7 +12,6 @@
     </configuration>
 
 
-
     <mapping>
         <class-a>com.zzyy.rs.entities.Account</class-a>
         <class-b>com.zzyy.rs.entities.TransactionFlow</class-b>
