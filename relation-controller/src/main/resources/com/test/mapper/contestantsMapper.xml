@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dgt.dal.contestantsMapper">
+  <resultMap id="BaseResultMap" type="com.dgt.model.contestants">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="relation_id" jdbcType="BIGINT" property="relationId" />
+    <result column="id" jdbcType="VARCHAR" property="id" />
+    <result column="number" jdbcType="VARCHAR" property="number" />
+    <result column="qq" jdbcType="VARCHAR" property="qq" />
+    <result column="realName" jdbcType="VARCHAR" property="realname" />
+    <result column="userPhoto" jdbcType="VARCHAR" property="userphoto" />
+    <result column="videoUrl" jdbcType="VARCHAR" property="videourl" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="area" jdbcType="VARCHAR" property="area" />
+    <result column="supperiorId" jdbcType="VARCHAR" property="supperiorid" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="totalPoint" jdbcType="VARCHAR" property="totalpoint" />
+    <result column="totalHits" jdbcType="VARCHAR" property="totalhits" />
+    <result column="statusName" jdbcType="VARCHAR" property="statusname" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+  </resultMap>
+</mapper>
