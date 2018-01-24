@@ -76,4 +76,7 @@
         <property name="mapperInterface" value="com.zzyy.rs.mapper.AttachmentMapper"/>
     </bean>
 
+    <bean id="contestantsMapper" class="org.mybatis.spring.mapper.MapperFactoryBean" autowire="byType">
+        <property name="mapperInterface" value="com.zzyy.rs.mapper.ContestantsMapper"/>
+    </bean>
 </beans>

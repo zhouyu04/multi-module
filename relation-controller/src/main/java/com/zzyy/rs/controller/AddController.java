@@ -5,6 +5,8 @@ import com.zzyy.rs.service.AccountService;
 import com.zzyy.rs.service.AppendService;
 import com.zzyy.rs.service.AttachmentService;
 import com.zzyy.rs.utils.FtpClientUtil;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 import org.apache.commons.lang3.StringUtils;
 import org.mybatis.generator.internal.DefaultCommentGenerator;
 import org.slf4j.LoggerFactory;
@@ -21,6 +23,7 @@ import javax.servlet.http.HttpSession;
 import java.io.*;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Controller
@@ -37,6 +40,23 @@ public class AddController {
 
     @Autowired
     AttachmentService attachmentService;
+
+
+    @RequestMapping("/contestants")
+    @ResponseBody
+    public String addContestants(HttpServletRequest request,
+                                 HttpServletResponse response){
+        try {
+            String paramStr = request.getParameter("param"); // 获取参数Json
+            JSONArray pList = JSONArray.fromObject(paramStr);
+            List<Contestants> contestantLists = (List<Contestants>) JSONArray.toCollection(pList, Contestants.class);
+            appendService.batchAddContestants(contestantLists);
+            return "success";
+        }catch (Exception e){
+            e.printStackTrace();
+            return "false";
+        }
+    }
 
     @RequestMapping(value = "input", method = RequestMethod.POST)
     public String addEvent(@ModelAttribute("AccountModel") AccountModel accountModel, Model model) {
@@ -204,4 +224,8 @@ public class AddController {
     public UploadStatus getStatus(HttpSession session){
         return (UploadStatus)session.getAttribute("upload_status");
     }
+
+
+
+
 }
