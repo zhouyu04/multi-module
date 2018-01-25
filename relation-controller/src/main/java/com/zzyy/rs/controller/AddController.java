@@ -41,7 +41,7 @@ public class AddController {
     @Autowired
     AttachmentService attachmentService;
 
-
+    //保存用户
     @RequestMapping("/contestants")
     @ResponseBody
     public String addContestants(HttpServletRequest request,
