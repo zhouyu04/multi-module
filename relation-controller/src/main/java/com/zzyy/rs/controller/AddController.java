@@ -51,6 +51,7 @@ public class AddController {
             JSONArray pList = JSONArray.fromObject(paramStr);
             List<Contestants> contestantLists = (List<Contestants>) JSONArray.toCollection(pList, Contestants.class);
             appendService.batchAddContestants(contestantLists);
+            System.out.println("test");
             return "success";
         }catch (Exception e){
             e.printStackTrace();
